@@ -101,7 +101,7 @@ CREATE TABLE UserInfo(
 	instagramPage   nvarchar(50),
 	youtubePage		nvarchar(50),
 	birthDate		date,
-	lastLogin		date,
+	lastLogin		datetime,
 	activeStatus	bit,
 
 	PRIMARY KEY(userInfoId),

@@ -46,7 +46,7 @@ namespace Sounty.ViewModel
         private ApplicationViewModel()
         {
             //TO DO: Manage somehow the userId as a property of this singletone class
-            MainPage = MainWindowViewModel.Instance;
+            MainPage = HomeLoginViewModel.Instance;
         }
 
         #endregion
