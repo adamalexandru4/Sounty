@@ -158,6 +158,21 @@ namespace Sounty.ViewModel
             EditUserViewModel.Instance.UserPage = new SubscriptionViewModel();
         }
 
+        public ICommand FriendsCommand
+        {
+            get
+            {
+                if (friendsCommand == null)
+                    friendsCommand = new RelayCommand(t => this.Friends());
+
+                return friendsCommand;
+            }
+        }
+
+        void Friends()
+        {
+            Instance.UserPage = new UserFriendsViewModel();
+        }
         #endregion
 
     }

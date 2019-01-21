@@ -1,7 +1,8 @@
+use [Sounty]
+
 /*
 	Genre
 */
-use [Sounty]
 
 SET IDENTITY_INSERT Genre OFF
 
@@ -35,10 +36,12 @@ SET IDENTITY_INSERT Payment OFF
 INSERT INTO Payment (cardNumber, expirationYear, expirationMonth, cardHolder)
 VALUES ('1234123412341234', '2020', '2', 'ADAM ALEXANDRU')
 
-
 /*
 	Subscription
 */
+
+select * from UserInfo
+
 SET IDENTITY_INSERT Subscription OFF
 GO
 
@@ -51,6 +54,7 @@ VALUES	('2019-02-04', '2019-03-04', 1)
 /*
 	User info
 */
+
 SET IDENTITY_INSERT UserInfo ON
 GO
 
@@ -60,18 +64,23 @@ VALUES (1, 1, 'Alexandru', 'Adam', 'Buzau', '0756278823', '1997-02-04')
 INSERT INTO UserInfo (userInfoId, firstName, lastName, userAddress, phoneNumber, birthDate)
 VALUES 	(2, 'Andrei', 'Stan', 'Motru', '0740197517', '1997-05-05'),
 	(3, 'Mihai', 'Albina', 'Rm. Vilcea', '0732050043', '1997-06-15'),
-	(4, 'Adelin', 'Petre', 'Bucuresti', '0789456732', '1997-02-12')
+	(4, 'Adelin', 'Petre', 'Bucuresti', '0789456732', '1997-02-12'),
+	(5, 'Alexandru' , 'Chirita', 'Focsani', '0799456879', '1995-03-25'),
+	(6, 'Claudiu', 'Purice', 'Targoviste', '0777889915', '1992-08-21'),
+	(7, 'Octavian', 'Petre', 'Targoviste', '0752147897', '1994-10-10')
 
 /*
 	User Spotify
 */
 
-
 INSERT INTO UserSounty (userId, userName, userPass)
 VALUES (1, 'adam.alexandru', '1234'),
 	(2, 'stan.andrei', '0000'),
 	(3, 'albina.mihai', '1111'),
-	(4, 'petre.adelin', '2222')
+	(4, 'petre.adelin', '2222'),
+	(5, 'alexandru.chirita', '3333'),
+	(6, 'claudiu.purice', '4444'),
+	(7, 'octavian.petre', '5555')
 
 /*
 	Friends
@@ -80,22 +89,22 @@ VALUES (1, 'adam.alexandru', '1234'),
 SET IDENTITY_INSERT Friends OFF
 
 INSERT INTO Friends (userId, friendId)
-VALUES (1, 2), (1, 3), (1, 4)
+VALUES (1, 2), (1, 3), (1, 4), (2, 1), (2, 5), (2,7), (3,1), (3,2), (3, 4)
 
 /* 
 	Images
 */
+
 SET IDENTITY_INSERT Images OFF
 
 INSERT INTO Images (imageName, imagePath)
-VALUES ('ZHU', 'D:\Sounty\Sounty\Sounty\Resources\Artists\ZHU.jpg'),
-		('Ringos Desert', 'D:\Sounty\Sounty\Sounty\Resources\Albums\RINGOS DESERT.jpg'),
-		('G4SHI - 24 Hours', 'D:\Sounty\Sounty\Sounty\Resources\Songs\Track (1).jpg'),
-		('GAULLIN - All The Things', 'D:\Sounty\Sounty\Sounty\Resources\Songs\Track (2).jpg'),
-		('Gaullin - LET ME SHOW YOU', 'D:\Sounty\Sounty\Sounty\Resources\Songs\Track (3).jpg'),
-		('Hotway & Diskover - Be Famous', 'D:\Sounty\Sounty\Sounty\Resources\Songs\Track (4).jpg'),
-		('Kaan Pars & Yusuf Alev - Heroine', 'D:\Sounty\Sounty\Sounty\Resources\Songs\Track (5).jpg')
-
+VALUES ('ZHU', 'D:\Sounty\Sounty\Resources\Artists\ZHU.jpg'),
+		('Ringos Desert', 'D:\Sounty\Sounty\Resources\Albums\RINGOS DESERT.jpg'),
+		('G4SHI - 24 Hours', 'D:\Sounty\Sounty\Resources\Songs\Track (1).jpg'),
+		('GAULLIN - All The Things', 'D:\Sounty\Sounty\Resources\Songs\Track (2).jpg'),
+		('Gaullin - LET ME SHOW YOU', 'D:\Sounty\Sounty\Resources\Songs\Track (3).jpg'),
+		('Hotway & Diskover - Be Famous', 'D:\Sounty\Sounty\Resources\Songs\Track (4).jpg'),
+		('Kaan Pars & Yusuf Alev - Heroine', 'D:\Sounty\Sounty\Resources\Songs\Track (5).jpg')
 
 /*
 	Artists

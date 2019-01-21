@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sounty.ViewModel
 {
@@ -12,7 +11,10 @@ namespace Sounty.ViewModel
         private string  name;
         public  bool    online;
         private string  coverImage;
-        
+        public string   userName;
+        public string   firstName;
+        public string   lastName;
+
         private DateTime lastLoginTime;
         private string lastLogin;
 
@@ -20,7 +22,6 @@ namespace Sounty.ViewModel
 
         public FriendListItem()
         {
-
         }
 
         #endregion
@@ -61,7 +62,6 @@ namespace Sounty.ViewModel
             }
             set
             {
-
                 lastLogin = value;
                 OnPropertyChanged("LastLogin");
             }

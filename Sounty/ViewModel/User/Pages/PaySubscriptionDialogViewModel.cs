@@ -194,6 +194,46 @@ namespace Sounty.ViewModel
                 return;
             }
 
+            try
+            {
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var payment = new DataAccess.Payment
+                    {
+                        cardNumber = newCreditCardNumber,
+                        cardHolder = newCardHolderName,
+                        expirationYear = newExpirationDate.Year,
+                        expirationMonth = newExpirationDate.Month,
+                    };
+
+                    context.Payments.Add(payment);
+                    context.SaveChanges();
+
+                    var subscription = new DataAccess.Subscription
+                    {
+                        startDate = DateTime.Now,
+                        endDate = DateTime.Now.AddDays(30),
+                        trialPeriod = false,
+                        paymentId = payment.cardId
+                    };
+
+                    context.Subscriptions.Add(subscription);
+                    var userInfo = (from user in context.UserInfoes
+                                    where user.userInfoId == UserRightSideViewModel.Instance.userInfo.userInfoId
+                                    select user).Single();
+
+                    userInfo.subscriptionId = subscription.subscriptionId;
+                    context.SaveChanges();
+
+                    UserRightSideViewModel.Instance.expiresDate = DateTime.Today.AddDays(30);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
             CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(true));
         }
 
