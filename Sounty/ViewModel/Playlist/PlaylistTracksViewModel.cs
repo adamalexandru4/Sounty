@@ -142,7 +142,7 @@ namespace Sounty.ViewModel
             });
         }
 
-        async void ShowAllTracks(int playlistId)
+        void ShowAllTracks(int playlistId)
         {
             using (var context = new DataAccess.SountyDB())
             {
@@ -401,7 +401,9 @@ namespace Sounty.ViewModel
 
         void PlayCurrentPlaylist()
         {
-
+            List<TrackOfPlaylistViewModel> tracks
+                        = new List<TrackOfPlaylistViewModel>(allTracks);
+            PlayerViewModel.Instance.Init(tracks);
         }
 
         public ICommand EditPlaylistInfo

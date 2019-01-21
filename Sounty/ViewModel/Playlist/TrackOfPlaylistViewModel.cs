@@ -12,6 +12,7 @@ namespace Sounty.ViewModel
         private string artist { get; set; }
         private string album { get; set; }
         private string filePath { get; set; }
+        private string imagePath { get; set; }
 
 
         public TrackOfPlaylistViewModel()
@@ -68,6 +69,19 @@ namespace Sounty.ViewModel
 
                 artist = value;
                 base.OnPropertyChanged("Artist");
+            }
+        }
+
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                if (value == imagePath)
+                    return;
+
+                imagePath = value;
+                base.OnPropertyChanged("ImagePath");
             }
         }
     }
