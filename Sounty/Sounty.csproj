@@ -159,6 +159,7 @@
       <DependentUpon>CommandControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\Artist\Artist.cs" />
     <Compile Include="ViewModel\Basic\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\Basic\LoadingWorkspaceViewModel.cs" />
     <Compile Include="ViewModel\Basic\MainWindowViewModel.cs" />
@@ -183,6 +184,9 @@
     <Compile Include="ViewModel\User\Pages\SubscriptionItemViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\SubscriptionViewModel.cs" />
     <Compile Include="ViewModel\User\UserRightSideViewModel.cs" />
+    <Compile Include="View\Artist\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Basic\LoadingWorkspaceView.xaml.cs">
       <DependentUpon>LoadingWorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -274,6 +278,10 @@
     <Page Include="Utility\CommandControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Artist\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Basic\LoadingWorkspaceView.xaml">
       <Generator>MSBuild:Compile</Generator>

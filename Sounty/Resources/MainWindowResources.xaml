@@ -60,6 +60,14 @@
     </DataTemplate>
 
     <!---->
+    <!--Artist-->
+
+    <DataTemplate
+        DataType="{x:Type vm:ArtistViewModel}">
+        <vw:ArtistView/>
+    </DataTemplate>
+    
+    <!---->
     <!--User-->
     
     <DataTemplate

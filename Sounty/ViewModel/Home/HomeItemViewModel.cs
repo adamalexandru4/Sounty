@@ -137,7 +137,7 @@ namespace Sounty.ViewModel
 
         private void Open()
         {
-
+            MainWindowViewModel.Instance.Workspace = new ArtistViewModel();
         }
 
         #endregion
