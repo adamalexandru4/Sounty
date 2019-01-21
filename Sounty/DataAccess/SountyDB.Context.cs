@@ -39,6 +39,7 @@ namespace Sounty.DataAccess
         public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; }
         public virtual DbSet<RatingsTrack> RatingsTracks { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
         public virtual DbSet<TrackArtist> TrackArtists { get; set; }
         public virtual DbSet<TracksGenre> TracksGenres { get; set; }

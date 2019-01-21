@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-using Sounty.Model;
-
 namespace Sounty.ViewModel
 {
     class PlayerViewModel : ViewModelBase
@@ -19,13 +17,13 @@ namespace Sounty.ViewModel
         {
             Interval = TimeSpan.FromMilliseconds(250)
         };
-        private bool isPlaying;
+        private bool isPlaying  = false;
         private bool isDragging = false;
         private RepeatMode repeatMode = RepeatMode.None;
         private bool wasRepeated;
 
-        private TrackModel crrtPlaying;
-        private List<TrackModel> nowPlaying;
+        private TrackOfPlaylistViewModel crrtPlaying;
+        private List<TrackOfPlaylistViewModel> nowPlaying;
 
         #endregion
 
@@ -96,6 +94,7 @@ namespace Sounty.ViewModel
             mediaPlayer.MediaEnded += PlayNextSong;
 
             timer.Tick += new EventHandler(UpdateSeekBar);
+            timer.Tick += new EventHandler(CheckForSignOut);
 
             Volume = 0.5;
             Position = 0;
@@ -115,14 +114,14 @@ namespace Sounty.ViewModel
 
         #region Methods
 
-        public void Init(List<TrackModel> tracks)
+        public void Init(List<TrackOfPlaylistViewModel> tracks)
         {
             if (tracks.Count == 0) return;
 
             crrtPlaying = tracks[0];
             nowPlaying  = tracks;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.Path));
+            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
             Play();
         }
 
@@ -136,13 +135,13 @@ namespace Sounty.ViewModel
                 {
                     crrtPlaying = nowPlaying[crrtIndex + 1];
                 }
-                mediaPlayer.Open(new Uri(crrtPlaying.Path));
+                mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
                 mediaPlayer.Play();
             }
             else
             if (repeatMode == RepeatMode.OneSong)
             {
-                mediaPlayer.Open(new Uri(crrtPlaying.Path));
+                mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
                 mediaPlayer.Play();
 
                 repeatMode = RepeatMode.None;
@@ -158,14 +157,14 @@ namespace Sounty.ViewModel
                     {
                         crrtPlaying = nowPlaying[crrtIndex + 1];
                     }
-                    mediaPlayer.Open(new Uri(crrtPlaying.Path));
+                    mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
                     mediaPlayer.Play();
 
                     wasRepeated = false;
                 }
                 else
                 {
-                    mediaPlayer.Open(new Uri(crrtPlaying.Path));
+                    mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
                     mediaPlayer.Play();
 
                     wasRepeated = true;
@@ -217,7 +216,7 @@ namespace Sounty.ViewModel
             timer.Stop();
             Position = 0;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.Path));
+            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
             if (isPlaying) Play();
         }
 
@@ -231,7 +230,7 @@ namespace Sounty.ViewModel
             timer.Stop();
             Position = 0;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.Path));
+            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
             if (isPlaying) Play();
         }
 
@@ -239,7 +238,7 @@ namespace Sounty.ViewModel
         {
             int i = nowPlaying.Count;
             int j;
-            TrackModel value;
+            TrackOfPlaylistViewModel value;
 
             while (i > 1)
             {
@@ -298,6 +297,19 @@ namespace Sounty.ViewModel
                     );
             }
             else Position = 0;
+        }
+
+        public void CheckForSignOut(object sender, EventArgs eventArgs)
+        {
+            if (ApplicationViewModel.Instance.MainPage is HomeLoginViewModel)
+            {
+                crrtPlaying = null;
+                nowPlaying.Clear();
+
+                Stop();
+                mediaPlayer.Close();
+                repeatMode = RepeatMode.None;
+            }
         }
 
         #endregion

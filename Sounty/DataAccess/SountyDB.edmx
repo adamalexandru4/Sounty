@@ -135,6 +135,16 @@
           <Property Name="trialPeriod" Type="bit" />
           <Property Name="paymentId" Type="int" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Track">
           <Key>
             <PropertyRef Name="trackId" />
@@ -176,7 +186,7 @@
           <Property Name="instagramPage" Type="nvarchar" MaxLength="50" />
           <Property Name="youtubePage" Type="nvarchar" MaxLength="50" />
           <Property Name="birthDate" Type="date" />
-          <Property Name="lastLogin" Type="date" />
+          <Property Name="lastLogin" Type="datetime" />
           <Property Name="activeStatus" Type="bit" />
         </EntityType>
         <EntityType Name="UserSounty">
@@ -187,7 +197,7 @@
           <Property Name="userName" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="userPass" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Album__artistId__3A02903A">
+        <Association Name="FK__Album__artistId__66EA454A">
           <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,7 +209,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Album__genreId__3AF6B473">
+        <Association Name="FK__Album__genreId__67DE6983">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Album__imageId__3BEAD8AC">
+        <Association Name="FK__Album__imageId__68D28DBC">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +233,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artist__imageId__32616E72">
+        <Association Name="FK__Artist__imageId__5F492382">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +245,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Concerts__locati__353DDB1D">
+        <Association Name="FK__Concerts__locati__6225902D">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Concerts" Type="Self.Concerts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,7 +257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__friendI__2CA8951C">
+        <Association Name="FK__Friends__friendI__59904A2C">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,7 +269,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__userId__2BB470E3">
+        <Association Name="FK__Friends__userId__589C25F3">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,7 +281,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlist__imageI__475C8B58">
+        <Association Name="FK__Playlist__imageI__74444068">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -283,7 +293,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlist__userId__4668671F">
+        <Association Name="FK__Playlist__userId__73501C2F">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -295,7 +305,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__image__51DA19CB">
+        <Association Name="FK__Playlists__image__7EC1CEDB">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="PlaylistsGenres" Type="Self.PlaylistsGenres" Multiplicity="*" />
           <ReferentialConstraint>
@@ -307,19 +317,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__playl__4A38F803">
-          <End Role="Playlist" Type="Self.Playlist" Multiplicity="1" />
-          <End Role="PlaylistsUsers" Type="Self.PlaylistsUsers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Playlist">
-              <PropertyRef Name="playlistId" />
-            </Principal>
-            <Dependent Role="PlaylistsUsers">
-              <PropertyRef Name="playlistId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Playlists__playl__54B68676">
+        <Association Name="FK__Playlists__playl__019E3B86">
           <End Role="PlaylistsGenres" Type="Self.PlaylistsGenres" Multiplicity="1" />
           <End Role="PlaylistsGenresTracks" Type="Self.PlaylistsGenresTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +329,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__track__55AAAAAF">
+        <Association Name="FK__Playlists__playl__7720AD13">
+          <End Role="Playlist" Type="Self.Playlist" Multiplicity="1" />
+          <End Role="PlaylistsUsers" Type="Self.PlaylistsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Playlist">
+              <PropertyRef Name="playlistId" />
+            </Principal>
+            <Dependent Role="PlaylistsUsers">
+              <PropertyRef Name="playlistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Playlists__track__02925FBF">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="PlaylistsGenresTracks" Type="Self.PlaylistsGenresTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__userI__4B2D1C3C">
+        <Association Name="FK__Playlists__userI__7814D14C">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="PlaylistsUsers" Type="Self.PlaylistsUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -355,7 +365,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PlaylistT__favor__4E0988E7">
+        <Association Name="FK__PlaylistT__favor__7AF13DF7">
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="0..1" />
           <End Role="PlaylistTracks" Type="Self.PlaylistTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -367,7 +377,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PlaylistT__track__4EFDAD20">
+        <Association Name="FK__PlaylistT__track__7BE56230">
           <End Role="Track" Type="Self.Track" Multiplicity="0..1" />
           <End Role="PlaylistTracks" Type="Self.PlaylistTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -379,7 +389,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RatingsTr__ratin__5C57A83E">
+        <Association Name="FK__RatingsTr__ratin__093F5D4E">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="RatingsTracks" Type="Self.RatingsTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,7 +401,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RatingsTr__track__5D4BCC77">
+        <Association Name="FK__RatingsTr__track__0A338187">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="RatingsTracks" Type="Self.RatingsTracks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,7 +413,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Subscript__payme__25077354">
+        <Association Name="FK__Subscript__payme__51EF2864">
           <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
           <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
           <ReferentialConstraint>
@@ -415,7 +425,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__albumId__3EC74557">
+        <Association Name="FK__Track__albumId__6BAEFA67">
           <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -427,7 +437,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__imageId__3FBB6990">
+        <Association Name="FK__Track__imageId__6CA31EA0">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -439,7 +449,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrackArti__artis__438BFA74">
+        <Association Name="FK__TrackArti__artis__7073AF84">
           <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
           <End Role="TrackArtists" Type="Self.TrackArtists" Multiplicity="*" />
           <ReferentialConstraint>
@@ -451,7 +461,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrackArti__track__4297D63B">
+        <Association Name="FK__TrackArti__track__6F7F8B4B">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="TrackArtists" Type="Self.TrackArtists" Multiplicity="*" />
           <ReferentialConstraint>
@@ -463,7 +473,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TracksGen__genre__5887175A">
+        <Association Name="FK__TracksGen__genre__056ECC6A">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="TracksGenres" Type="Self.TracksGenres" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +485,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TracksGen__genre__597B3B93">
+        <Association Name="FK__TracksGen__genre__0662F0A3">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
           <End Role="TracksGenres" Type="Self.TracksGenres" Multiplicity="*" />
           <ReferentialConstraint>
@@ -487,7 +497,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserInfo__profil__28D80438">
+        <Association Name="FK__UserInfo__profil__55BFB948">
           <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -538,112 +548,113 @@
           <EntitySet Name="PlaylistTracks" EntityType="Self.PlaylistTracks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RatingsTracks" EntityType="Self.RatingsTracks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrackArtists" EntityType="Self.TrackArtists" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TracksGenres" EntityType="Self.TracksGenres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSounty" EntityType="Self.UserSounty" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Album__artistId__3A02903A" Association="Self.FK__Album__artistId__3A02903A">
+          <AssociationSet Name="FK__Album__artistId__66EA454A" Association="Self.FK__Album__artistId__66EA454A">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
-          <AssociationSet Name="FK__Album__genreId__3AF6B473" Association="Self.FK__Album__genreId__3AF6B473">
+          <AssociationSet Name="FK__Album__genreId__67DE6983" Association="Self.FK__Album__genreId__67DE6983">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
-          <AssociationSet Name="FK__Album__imageId__3BEAD8AC" Association="Self.FK__Album__imageId__3BEAD8AC">
+          <AssociationSet Name="FK__Album__imageId__68D28DBC" Association="Self.FK__Album__imageId__68D28DBC">
             <End Role="Images" EntitySet="Images" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artist__imageId__32616E72" Association="Self.FK__Artist__imageId__32616E72">
+          <AssociationSet Name="FK__Artist__imageId__5F492382" Association="Self.FK__Artist__imageId__5F492382">
             <End Role="Images" EntitySet="Images" />
             <End Role="Artist" EntitySet="Artist" />
           </AssociationSet>
-          <AssociationSet Name="FK__Concerts__locati__353DDB1D" Association="Self.FK__Concerts__locati__353DDB1D">
+          <AssociationSet Name="FK__Concerts__locati__6225902D" Association="Self.FK__Concerts__locati__6225902D">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Concerts" EntitySet="Concerts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__friendI__2CA8951C" Association="Self.FK__Friends__friendI__2CA8951C">
+          <AssociationSet Name="FK__Friends__friendI__59904A2C" Association="Self.FK__Friends__friendI__59904A2C">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__userId__2BB470E3" Association="Self.FK__Friends__userId__2BB470E3">
+          <AssociationSet Name="FK__Friends__userId__589C25F3" Association="Self.FK__Friends__userId__589C25F3">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlist__imageI__475C8B58" Association="Self.FK__Playlist__imageI__475C8B58">
+          <AssociationSet Name="FK__Playlist__imageI__74444068" Association="Self.FK__Playlist__imageI__74444068">
             <End Role="Images" EntitySet="Images" />
             <End Role="Playlist" EntitySet="Playlist" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlist__userId__4668671F" Association="Self.FK__Playlist__userId__4668671F">
+          <AssociationSet Name="FK__Playlist__userId__73501C2F" Association="Self.FK__Playlist__userId__73501C2F">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Playlist" EntitySet="Playlist" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__image__51DA19CB" Association="Self.FK__Playlists__image__51DA19CB">
+          <AssociationSet Name="FK__Playlists__image__7EC1CEDB" Association="Self.FK__Playlists__image__7EC1CEDB">
             <End Role="Images" EntitySet="Images" />
             <End Role="PlaylistsGenres" EntitySet="PlaylistsGenres" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__playl__4A38F803" Association="Self.FK__Playlists__playl__4A38F803">
-            <End Role="Playlist" EntitySet="Playlist" />
-            <End Role="PlaylistsUsers" EntitySet="PlaylistsUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Playlists__playl__54B68676" Association="Self.FK__Playlists__playl__54B68676">
+          <AssociationSet Name="FK__Playlists__playl__019E3B86" Association="Self.FK__Playlists__playl__019E3B86">
             <End Role="PlaylistsGenres" EntitySet="PlaylistsGenres" />
             <End Role="PlaylistsGenresTracks" EntitySet="PlaylistsGenresTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__track__55AAAAAF" Association="Self.FK__Playlists__track__55AAAAAF">
+          <AssociationSet Name="FK__Playlists__playl__7720AD13" Association="Self.FK__Playlists__playl__7720AD13">
+            <End Role="Playlist" EntitySet="Playlist" />
+            <End Role="PlaylistsUsers" EntitySet="PlaylistsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Playlists__track__02925FBF" Association="Self.FK__Playlists__track__02925FBF">
             <End Role="Track" EntitySet="Track" />
             <End Role="PlaylistsGenresTracks" EntitySet="PlaylistsGenresTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__userI__4B2D1C3C" Association="Self.FK__Playlists__userI__4B2D1C3C">
+          <AssociationSet Name="FK__Playlists__userI__7814D14C" Association="Self.FK__Playlists__userI__7814D14C">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="PlaylistsUsers" EntitySet="PlaylistsUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__PlaylistT__favor__4E0988E7" Association="Self.FK__PlaylistT__favor__4E0988E7">
+          <AssociationSet Name="FK__PlaylistT__favor__7AF13DF7" Association="Self.FK__PlaylistT__favor__7AF13DF7">
             <End Role="Playlist" EntitySet="Playlist" />
             <End Role="PlaylistTracks" EntitySet="PlaylistTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__PlaylistT__track__4EFDAD20" Association="Self.FK__PlaylistT__track__4EFDAD20">
+          <AssociationSet Name="FK__PlaylistT__track__7BE56230" Association="Self.FK__PlaylistT__track__7BE56230">
             <End Role="Track" EntitySet="Track" />
             <End Role="PlaylistTracks" EntitySet="PlaylistTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__RatingsTr__ratin__5C57A83E" Association="Self.FK__RatingsTr__ratin__5C57A83E">
+          <AssociationSet Name="FK__RatingsTr__ratin__093F5D4E" Association="Self.FK__RatingsTr__ratin__093F5D4E">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="RatingsTracks" EntitySet="RatingsTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__RatingsTr__track__5D4BCC77" Association="Self.FK__RatingsTr__track__5D4BCC77">
+          <AssociationSet Name="FK__RatingsTr__track__0A338187" Association="Self.FK__RatingsTr__track__0A338187">
             <End Role="Track" EntitySet="Track" />
             <End Role="RatingsTracks" EntitySet="RatingsTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Subscript__payme__25077354" Association="Self.FK__Subscript__payme__25077354">
+          <AssociationSet Name="FK__Subscript__payme__51EF2864" Association="Self.FK__Subscript__payme__51EF2864">
             <End Role="Payment" EntitySet="Payment" />
             <End Role="Subscription" EntitySet="Subscription" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__albumId__3EC74557" Association="Self.FK__Track__albumId__3EC74557">
+          <AssociationSet Name="FK__Track__albumId__6BAEFA67" Association="Self.FK__Track__albumId__6BAEFA67">
             <End Role="Album" EntitySet="Album" />
             <End Role="Track" EntitySet="Track" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__imageId__3FBB6990" Association="Self.FK__Track__imageId__3FBB6990">
+          <AssociationSet Name="FK__Track__imageId__6CA31EA0" Association="Self.FK__Track__imageId__6CA31EA0">
             <End Role="Images" EntitySet="Images" />
             <End Role="Track" EntitySet="Track" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrackArti__artis__438BFA74" Association="Self.FK__TrackArti__artis__438BFA74">
+          <AssociationSet Name="FK__TrackArti__artis__7073AF84" Association="Self.FK__TrackArti__artis__7073AF84">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="TrackArtists" EntitySet="TrackArtists" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrackArti__track__4297D63B" Association="Self.FK__TrackArti__track__4297D63B">
+          <AssociationSet Name="FK__TrackArti__track__6F7F8B4B" Association="Self.FK__TrackArti__track__6F7F8B4B">
             <End Role="Track" EntitySet="Track" />
             <End Role="TrackArtists" EntitySet="TrackArtists" />
           </AssociationSet>
-          <AssociationSet Name="FK__TracksGen__genre__5887175A" Association="Self.FK__TracksGen__genre__5887175A">
+          <AssociationSet Name="FK__TracksGen__genre__056ECC6A" Association="Self.FK__TracksGen__genre__056ECC6A">
             <End Role="Track" EntitySet="Track" />
             <End Role="TracksGenres" EntitySet="TracksGenres" />
           </AssociationSet>
-          <AssociationSet Name="FK__TracksGen__genre__597B3B93" Association="Self.FK__TracksGen__genre__597B3B93">
+          <AssociationSet Name="FK__TracksGen__genre__0662F0A3" Association="Self.FK__TracksGen__genre__0662F0A3">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="TracksGenres" EntitySet="TracksGenres" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserInfo__profil__28D80438" Association="Self.FK__UserInfo__profil__28D80438">
+          <AssociationSet Name="FK__UserInfo__profil__55BFB948" Association="Self.FK__UserInfo__profil__55BFB948">
             <End Role="Images" EntitySet="Images" />
             <End Role="UserInfo" EntitySet="UserInfo" />
           </AssociationSet>
@@ -670,10 +681,10 @@
           <Property Name="imageId" Type="Int32" />
           <Property Name="genreId" Type="Int32" Nullable="false" />
           <Property Name="artistId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK__Album__artistId__3A02903A" FromRole="Album" ToRole="Artist" />
-          <NavigationProperty Name="Genre" Relationship="Self.FK__Album__genreId__3AF6B473" FromRole="Album" ToRole="Genre" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Album__imageId__3BEAD8AC" FromRole="Album" ToRole="Images" />
-          <NavigationProperty Name="Tracks" Relationship="Self.FK__Track__albumId__3EC74557" FromRole="Album" ToRole="Track" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__Album__artistId__66EA454A" FromRole="Album" ToRole="Artist" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK__Album__genreId__67DE6983" FromRole="Album" ToRole="Genre" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Album__imageId__68D28DBC" FromRole="Album" ToRole="Images" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK__Track__albumId__6BAEFA67" FromRole="Album" ToRole="Track" />
         </EntityType>
         <EntityType Name="Artist">
           <Key>
@@ -686,10 +697,10 @@
           <Property Name="totalAlbums" Type="Int32" />
           <Property Name="imageId" Type="Int32" />
           <Property Name="facebookUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__artistId__3A02903A" FromRole="Artist" ToRole="Album" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Artist__imageId__32616E72" FromRole="Artist" ToRole="Images" />
-          <NavigationProperty Name="Concerts" Relationship="Self.FK__Concerts__locati__353DDB1D" FromRole="Artist" ToRole="Concerts" />
-          <NavigationProperty Name="TrackArtists" Relationship="Self.FK__TrackArti__artis__438BFA74" FromRole="Artist" ToRole="TrackArtists" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__artistId__66EA454A" FromRole="Artist" ToRole="Album" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Artist__imageId__5F492382" FromRole="Artist" ToRole="Images" />
+          <NavigationProperty Name="Concerts" Relationship="Self.FK__Concerts__locati__6225902D" FromRole="Artist" ToRole="Concerts" />
+          <NavigationProperty Name="TrackArtists" Relationship="Self.FK__TrackArti__artis__7073AF84" FromRole="Artist" ToRole="TrackArtists" />
         </EntityType>
         <EntityType Name="Concert">
           <Key>
@@ -699,7 +710,7 @@
           <Property Name="artistId" Type="Int32" />
           <Property Name="dateConcert" Type="DateTime" Precision="0" />
           <Property Name="locationConcert" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK__Concerts__locati__353DDB1D" FromRole="Concerts" ToRole="Artist" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__Concerts__locati__6225902D" FromRole="Concerts" ToRole="Artist" />
         </EntityType>
         <EntityType Name="Friend">
           <Key>
@@ -708,8 +719,8 @@
           <Property Name="uselessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Int32" Nullable="false" />
           <Property Name="friendId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Friends__friendI__2CA8951C" FromRole="Friends" ToRole="UserInfo" />
-          <NavigationProperty Name="UserInfo1" Relationship="Self.FK__Friends__userId__2BB470E3" FromRole="Friends" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Friends__friendI__59904A2C" FromRole="Friends" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo1" Relationship="Self.FK__Friends__userId__589C25F3" FromRole="Friends" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Genre">
           <Key>
@@ -717,8 +728,8 @@
           </Key>
           <Property Name="genreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nameGenre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__genreId__3AF6B473" FromRole="Genre" ToRole="Album" />
-          <NavigationProperty Name="TracksGenres" Relationship="Self.FK__TracksGen__genre__597B3B93" FromRole="Genre" ToRole="TracksGenres" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__genreId__67DE6983" FromRole="Genre" ToRole="Album" />
+          <NavigationProperty Name="TracksGenres" Relationship="Self.FK__TracksGen__genre__0662F0A3" FromRole="Genre" ToRole="TracksGenres" />
         </EntityType>
         <EntityType Name="Image">
           <Key>
@@ -727,12 +738,12 @@
           <Property Name="imageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="imageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="imagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__imageId__3BEAD8AC" FromRole="Images" ToRole="Album" />
-          <NavigationProperty Name="Artists" Relationship="Self.FK__Artist__imageId__32616E72" FromRole="Images" ToRole="Artist" />
-          <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__imageI__475C8B58" FromRole="Images" ToRole="Playlist" />
-          <NavigationProperty Name="PlaylistsGenres" Relationship="Self.FK__Playlists__image__51DA19CB" FromRole="Images" ToRole="PlaylistsGenres" />
-          <NavigationProperty Name="Tracks" Relationship="Self.FK__Track__imageId__3FBB6990" FromRole="Images" ToRole="Track" />
-          <NavigationProperty Name="UserInfoes" Relationship="Self.FK__UserInfo__profil__28D80438" FromRole="Images" ToRole="UserInfo" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK__Album__imageId__68D28DBC" FromRole="Images" ToRole="Album" />
+          <NavigationProperty Name="Artists" Relationship="Self.FK__Artist__imageId__5F492382" FromRole="Images" ToRole="Artist" />
+          <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__imageI__74444068" FromRole="Images" ToRole="Playlist" />
+          <NavigationProperty Name="PlaylistsGenres" Relationship="Self.FK__Playlists__image__7EC1CEDB" FromRole="Images" ToRole="PlaylistsGenres" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK__Track__imageId__6CA31EA0" FromRole="Images" ToRole="Track" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK__UserInfo__profil__55BFB948" FromRole="Images" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -743,7 +754,7 @@
           <Property Name="expirationYear" Type="Int32" Nullable="false" />
           <Property Name="expirationMonth" Type="Int32" Nullable="false" />
           <Property Name="cardHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Subscriptions" Relationship="Self.FK__Subscript__payme__25077354" FromRole="Payment" ToRole="Subscription" />
+          <NavigationProperty Name="Subscriptions" Relationship="Self.FK__Subscript__payme__51EF2864" FromRole="Payment" ToRole="Subscription" />
         </EntityType>
         <EntityType Name="Playlist">
           <Key>
@@ -757,10 +768,10 @@
           <Property Name="followers" Type="Int32" />
           <Property Name="imageId" Type="Int32" />
           <Property Name="descriptionText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Playlist__imageI__475C8B58" FromRole="Playlist" ToRole="Images" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Playlist__userId__4668671F" FromRole="Playlist" ToRole="UserInfo" />
-          <NavigationProperty Name="PlaylistsUsers" Relationship="Self.FK__Playlists__playl__4A38F803" FromRole="Playlist" ToRole="PlaylistsUsers" />
-          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK__PlaylistT__favor__4E0988E7" FromRole="Playlist" ToRole="PlaylistTracks" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Playlist__imageI__74444068" FromRole="Playlist" ToRole="Images" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Playlist__userId__73501C2F" FromRole="Playlist" ToRole="UserInfo" />
+          <NavigationProperty Name="PlaylistsUsers" Relationship="Self.FK__Playlists__playl__7720AD13" FromRole="Playlist" ToRole="PlaylistsUsers" />
+          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK__PlaylistT__favor__7AF13DF7" FromRole="Playlist" ToRole="PlaylistTracks" />
         </EntityType>
         <EntityType Name="PlaylistsGenre">
           <Key>
@@ -770,8 +781,8 @@
           <Property Name="playlistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="imageId" Type="Int32" />
           <Property Name="followers" Type="Int32" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Playlists__image__51DA19CB" FromRole="PlaylistsGenres" ToRole="Images" />
-          <NavigationProperty Name="PlaylistsGenresTracks" Relationship="Self.FK__Playlists__playl__54B68676" FromRole="PlaylistsGenres" ToRole="PlaylistsGenresTracks" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Playlists__image__7EC1CEDB" FromRole="PlaylistsGenres" ToRole="Images" />
+          <NavigationProperty Name="PlaylistsGenresTracks" Relationship="Self.FK__Playlists__playl__019E3B86" FromRole="PlaylistsGenres" ToRole="PlaylistsGenresTracks" />
         </EntityType>
         <EntityType Name="PlaylistsGenresTrack">
           <Key>
@@ -780,8 +791,8 @@
           <Property Name="uselessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="playlistId" Type="Int32" Nullable="false" />
           <Property Name="trackId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PlaylistsGenre" Relationship="Self.FK__Playlists__playl__54B68676" FromRole="PlaylistsGenresTracks" ToRole="PlaylistsGenres" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__Playlists__track__55AAAAAF" FromRole="PlaylistsGenresTracks" ToRole="Track" />
+          <NavigationProperty Name="PlaylistsGenre" Relationship="Self.FK__Playlists__playl__019E3B86" FromRole="PlaylistsGenresTracks" ToRole="PlaylistsGenres" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__Playlists__track__02925FBF" FromRole="PlaylistsGenresTracks" ToRole="Track" />
         </EntityType>
         <EntityType Name="PlaylistsUser">
           <Key>
@@ -790,8 +801,8 @@
           <Property Name="uselessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="playlistId" Type="Int32" Nullable="false" />
           <Property Name="userId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Playlist" Relationship="Self.FK__Playlists__playl__4A38F803" FromRole="PlaylistsUsers" ToRole="Playlist" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Playlists__userI__4B2D1C3C" FromRole="PlaylistsUsers" ToRole="UserInfo" />
+          <NavigationProperty Name="Playlist" Relationship="Self.FK__Playlists__playl__7720AD13" FromRole="PlaylistsUsers" ToRole="Playlist" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__Playlists__userI__7814D14C" FromRole="PlaylistsUsers" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="PlaylistTrack">
           <Key>
@@ -801,8 +812,8 @@
           <Property Name="playlistId" Type="Int32" />
           <Property Name="trackId" Type="Int32" />
           <Property Name="favoriteFlag" Type="Boolean" />
-          <NavigationProperty Name="Playlist" Relationship="Self.FK__PlaylistT__favor__4E0988E7" FromRole="PlaylistTracks" ToRole="Playlist" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__PlaylistT__track__4EFDAD20" FromRole="PlaylistTracks" ToRole="Track" />
+          <NavigationProperty Name="Playlist" Relationship="Self.FK__PlaylistT__favor__7AF13DF7" FromRole="PlaylistTracks" ToRole="Playlist" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__PlaylistT__track__7BE56230" FromRole="PlaylistTracks" ToRole="Track" />
         </EntityType>
         <EntityType Name="RatingsTrack">
           <Key>
@@ -812,8 +823,8 @@
           <Property Name="userId" Type="Int32" Nullable="false" />
           <Property Name="trackId" Type="Int32" Nullable="false" />
           <Property Name="rating" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK__RatingsTr__ratin__5C57A83E" FromRole="RatingsTracks" ToRole="UserInfo" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__RatingsTr__track__5D4BCC77" FromRole="RatingsTracks" ToRole="Track" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__RatingsTr__ratin__093F5D4E" FromRole="RatingsTracks" ToRole="UserInfo" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__RatingsTr__track__0A338187" FromRole="RatingsTracks" ToRole="Track" />
         </EntityType>
         <EntityType Name="Subscription">
           <Key>
@@ -824,8 +835,18 @@
           <Property Name="endDate" Type="DateTime" Precision="0" />
           <Property Name="trialPeriod" Type="Boolean" />
           <Property Name="paymentId" Type="Int32" />
-          <NavigationProperty Name="Payment" Relationship="Self.FK__Subscript__payme__25077354" FromRole="Subscription" ToRole="Payment" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK__Subscript__payme__51EF2864" FromRole="Subscription" ToRole="Payment" />
           <NavigationProperty Name="UserInfoes" Relationship="Self.FK_SubscriptionId" FromRole="Subscription" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Track">
           <Key>
@@ -836,13 +857,13 @@
           <Property Name="nameTrack" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="filepath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="imageId" Type="Int32" />
-          <NavigationProperty Name="Album" Relationship="Self.FK__Track__albumId__3EC74557" FromRole="Track" ToRole="Album" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__Track__imageId__3FBB6990" FromRole="Track" ToRole="Images" />
-          <NavigationProperty Name="PlaylistsGenresTracks" Relationship="Self.FK__Playlists__track__55AAAAAF" FromRole="Track" ToRole="PlaylistsGenresTracks" />
-          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK__PlaylistT__track__4EFDAD20" FromRole="Track" ToRole="PlaylistTracks" />
-          <NavigationProperty Name="RatingsTracks" Relationship="Self.FK__RatingsTr__track__5D4BCC77" FromRole="Track" ToRole="RatingsTracks" />
-          <NavigationProperty Name="TrackArtists" Relationship="Self.FK__TrackArti__track__4297D63B" FromRole="Track" ToRole="TrackArtists" />
-          <NavigationProperty Name="TracksGenres" Relationship="Self.FK__TracksGen__genre__5887175A" FromRole="Track" ToRole="TracksGenres" />
+          <NavigationProperty Name="Album" Relationship="Self.FK__Track__albumId__6BAEFA67" FromRole="Track" ToRole="Album" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Track__imageId__6CA31EA0" FromRole="Track" ToRole="Images" />
+          <NavigationProperty Name="PlaylistsGenresTracks" Relationship="Self.FK__Playlists__track__02925FBF" FromRole="Track" ToRole="PlaylistsGenresTracks" />
+          <NavigationProperty Name="PlaylistTracks" Relationship="Self.FK__PlaylistT__track__7BE56230" FromRole="Track" ToRole="PlaylistTracks" />
+          <NavigationProperty Name="RatingsTracks" Relationship="Self.FK__RatingsTr__track__0A338187" FromRole="Track" ToRole="RatingsTracks" />
+          <NavigationProperty Name="TrackArtists" Relationship="Self.FK__TrackArti__track__6F7F8B4B" FromRole="Track" ToRole="TrackArtists" />
+          <NavigationProperty Name="TracksGenres" Relationship="Self.FK__TracksGen__genre__056ECC6A" FromRole="Track" ToRole="TracksGenres" />
         </EntityType>
         <EntityType Name="TrackArtist">
           <Key>
@@ -851,8 +872,8 @@
           <Property Name="uselessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="trackId" Type="Int32" Nullable="false" />
           <Property Name="artistId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK__TrackArti__artis__438BFA74" FromRole="TrackArtists" ToRole="Artist" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__TrackArti__track__4297D63B" FromRole="TrackArtists" ToRole="Track" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__TrackArti__artis__7073AF84" FromRole="TrackArtists" ToRole="Artist" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__TrackArti__track__6F7F8B4B" FromRole="TrackArtists" ToRole="Track" />
         </EntityType>
         <EntityType Name="TracksGenre">
           <Key>
@@ -861,8 +882,8 @@
           <Property Name="uselessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="trackId" Type="Int32" Nullable="false" />
           <Property Name="genreId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Genre" Relationship="Self.FK__TracksGen__genre__597B3B93" FromRole="TracksGenres" ToRole="Genre" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__TracksGen__genre__5887175A" FromRole="TracksGenres" ToRole="Track" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK__TracksGen__genre__0662F0A3" FromRole="TracksGenres" ToRole="Genre" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__TracksGen__genre__056ECC6A" FromRole="TracksGenres" ToRole="Track" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -879,14 +900,14 @@
           <Property Name="instagramPage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="youtubePage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="birthDate" Type="DateTime" Precision="0" />
-          <Property Name="lastLogin" Type="DateTime" Precision="0" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
           <Property Name="activeStatus" Type="Boolean" />
-          <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__friendI__2CA8951C" FromRole="UserInfo" ToRole="Friends" />
-          <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__userId__2BB470E3" FromRole="UserInfo" ToRole="Friends" />
-          <NavigationProperty Name="Image" Relationship="Self.FK__UserInfo__profil__28D80438" FromRole="UserInfo" ToRole="Images" />
-          <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__userId__4668671F" FromRole="UserInfo" ToRole="Playlist" />
-          <NavigationProperty Name="PlaylistsUsers" Relationship="Self.FK__Playlists__userI__4B2D1C3C" FromRole="UserInfo" ToRole="PlaylistsUsers" />
-          <NavigationProperty Name="RatingsTracks" Relationship="Self.FK__RatingsTr__ratin__5C57A83E" FromRole="UserInfo" ToRole="RatingsTracks" />
+          <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__friendI__59904A2C" FromRole="UserInfo" ToRole="Friends" />
+          <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__userId__589C25F3" FromRole="UserInfo" ToRole="Friends" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__UserInfo__profil__55BFB948" FromRole="UserInfo" ToRole="Images" />
+          <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__userId__73501C2F" FromRole="UserInfo" ToRole="Playlist" />
+          <NavigationProperty Name="PlaylistsUsers" Relationship="Self.FK__Playlists__userI__7814D14C" FromRole="UserInfo" ToRole="PlaylistsUsers" />
+          <NavigationProperty Name="RatingsTracks" Relationship="Self.FK__RatingsTr__ratin__093F5D4E" FromRole="UserInfo" ToRole="RatingsTracks" />
           <NavigationProperty Name="Subscription" Relationship="Self.FK_SubscriptionId" FromRole="UserInfo" ToRole="Subscription" />
           <NavigationProperty Name="UserSounty" Relationship="Self.FK_UserInfo" FromRole="UserInfo" ToRole="UserSounty" />
         </EntityType>
@@ -899,7 +920,7 @@
           <Property Name="userPass" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserInfo" FromRole="UserSounty" ToRole="UserInfo" />
         </EntityType>
-        <Association Name="FK__Album__artistId__3A02903A">
+        <Association Name="FK__Album__artistId__66EA454A">
           <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -911,7 +932,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Album__genreId__3AF6B473">
+        <Association Name="FK__Album__genreId__67DE6983">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -923,7 +944,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Album__imageId__3BEAD8AC">
+        <Association Name="FK__Album__imageId__68D28DBC">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
@@ -935,7 +956,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__albumId__3EC74557">
+        <Association Name="FK__Track__albumId__6BAEFA67">
           <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -947,7 +968,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artist__imageId__32616E72">
+        <Association Name="FK__Artist__imageId__5F492382">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -959,7 +980,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Concerts__locati__353DDB1D">
+        <Association Name="FK__Concerts__locati__6225902D">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Concerts" Type="Self.Concert" Multiplicity="*" />
           <ReferentialConstraint>
@@ -971,7 +992,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrackArti__artis__438BFA74">
+        <Association Name="FK__TrackArti__artis__7073AF84">
           <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
           <End Role="TrackArtists" Type="Self.TrackArtist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -983,7 +1004,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__friendI__2CA8951C">
+        <Association Name="FK__Friends__friendI__59904A2C">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -995,7 +1016,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__userId__2BB470E3">
+        <Association Name="FK__Friends__userId__589C25F3">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1007,7 +1028,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TracksGen__genre__597B3B93">
+        <Association Name="FK__TracksGen__genre__0662F0A3">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
           <End Role="TracksGenres" Type="Self.TracksGenre" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1019,7 +1040,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlist__imageI__475C8B58">
+        <Association Name="FK__Playlist__imageI__74444068">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1031,7 +1052,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__image__51DA19CB">
+        <Association Name="FK__Playlists__image__7EC1CEDB">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="PlaylistsGenres" Type="Self.PlaylistsGenre" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1043,7 +1064,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__imageId__3FBB6990">
+        <Association Name="FK__Track__imageId__6CA31EA0">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1055,7 +1076,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserInfo__profil__28D80438">
+        <Association Name="FK__UserInfo__profil__55BFB948">
           <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1067,7 +1088,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Subscript__payme__25077354">
+        <Association Name="FK__Subscript__payme__51EF2864">
           <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
           <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1079,7 +1100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlist__userId__4668671F">
+        <Association Name="FK__Playlist__userId__73501C2F">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1091,7 +1112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__playl__4A38F803">
+        <Association Name="FK__Playlists__playl__7720AD13">
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="1" />
           <End Role="PlaylistsUsers" Type="Self.PlaylistsUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1103,7 +1124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PlaylistT__favor__4E0988E7">
+        <Association Name="FK__PlaylistT__favor__7AF13DF7">
           <End Role="Playlist" Type="Self.Playlist" Multiplicity="0..1" />
           <End Role="PlaylistTracks" Type="Self.PlaylistTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1115,7 +1136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__playl__54B68676">
+        <Association Name="FK__Playlists__playl__019E3B86">
           <End Role="PlaylistsGenres" Type="Self.PlaylistsGenre" Multiplicity="1" />
           <End Role="PlaylistsGenresTracks" Type="Self.PlaylistsGenresTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1127,7 +1148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__track__55AAAAAF">
+        <Association Name="FK__Playlists__track__02925FBF">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="PlaylistsGenresTracks" Type="Self.PlaylistsGenresTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1139,7 +1160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Playlists__userI__4B2D1C3C">
+        <Association Name="FK__Playlists__userI__7814D14C">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="PlaylistsUsers" Type="Self.PlaylistsUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1151,7 +1172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PlaylistT__track__4EFDAD20">
+        <Association Name="FK__PlaylistT__track__7BE56230">
           <End Role="Track" Type="Self.Track" Multiplicity="0..1" />
           <End Role="PlaylistTracks" Type="Self.PlaylistTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1163,7 +1184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RatingsTr__ratin__5C57A83E">
+        <Association Name="FK__RatingsTr__ratin__093F5D4E">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="RatingsTracks" Type="Self.RatingsTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1175,7 +1196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RatingsTr__track__5D4BCC77">
+        <Association Name="FK__RatingsTr__track__0A338187">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="RatingsTracks" Type="Self.RatingsTrack" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1199,7 +1220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrackArti__track__4297D63B">
+        <Association Name="FK__TrackArti__track__6F7F8B4B">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="TrackArtists" Type="Self.TrackArtist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1211,7 +1232,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TracksGen__genre__5887175A">
+        <Association Name="FK__TracksGen__genre__056ECC6A">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="TracksGenres" Type="Self.TracksGenre" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1250,104 +1271,105 @@
           <EntitySet Name="PlaylistTracks" EntityType="Self.PlaylistTrack" />
           <EntitySet Name="RatingsTracks" EntityType="Self.RatingsTrack" />
           <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tracks" EntityType="Self.Track" />
           <EntitySet Name="TrackArtists" EntityType="Self.TrackArtist" />
           <EntitySet Name="TracksGenres" EntityType="Self.TracksGenre" />
           <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
           <EntitySet Name="UserSounties" EntityType="Self.UserSounty" />
-          <AssociationSet Name="FK__Album__artistId__3A02903A" Association="Self.FK__Album__artistId__3A02903A">
+          <AssociationSet Name="FK__Album__artistId__66EA454A" Association="Self.FK__Album__artistId__66EA454A">
             <End Role="Artist" EntitySet="Artists" />
             <End Role="Album" EntitySet="Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK__Album__genreId__3AF6B473" Association="Self.FK__Album__genreId__3AF6B473">
+          <AssociationSet Name="FK__Album__genreId__67DE6983" Association="Self.FK__Album__genreId__67DE6983">
             <End Role="Genre" EntitySet="Genres" />
             <End Role="Album" EntitySet="Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK__Album__imageId__3BEAD8AC" Association="Self.FK__Album__imageId__3BEAD8AC">
+          <AssociationSet Name="FK__Album__imageId__68D28DBC" Association="Self.FK__Album__imageId__68D28DBC">
             <End Role="Images" EntitySet="Images" />
             <End Role="Album" EntitySet="Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__albumId__3EC74557" Association="Self.FK__Track__albumId__3EC74557">
+          <AssociationSet Name="FK__Track__albumId__6BAEFA67" Association="Self.FK__Track__albumId__6BAEFA67">
             <End Role="Album" EntitySet="Albums" />
             <End Role="Track" EntitySet="Tracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artist__imageId__32616E72" Association="Self.FK__Artist__imageId__32616E72">
+          <AssociationSet Name="FK__Artist__imageId__5F492382" Association="Self.FK__Artist__imageId__5F492382">
             <End Role="Images" EntitySet="Images" />
             <End Role="Artist" EntitySet="Artists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Concerts__locati__353DDB1D" Association="Self.FK__Concerts__locati__353DDB1D">
+          <AssociationSet Name="FK__Concerts__locati__6225902D" Association="Self.FK__Concerts__locati__6225902D">
             <End Role="Artist" EntitySet="Artists" />
             <End Role="Concerts" EntitySet="Concerts" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrackArti__artis__438BFA74" Association="Self.FK__TrackArti__artis__438BFA74">
+          <AssociationSet Name="FK__TrackArti__artis__7073AF84" Association="Self.FK__TrackArti__artis__7073AF84">
             <End Role="Artist" EntitySet="Artists" />
             <End Role="TrackArtists" EntitySet="TrackArtists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__friendI__2CA8951C" Association="Self.FK__Friends__friendI__2CA8951C">
+          <AssociationSet Name="FK__Friends__friendI__59904A2C" Association="Self.FK__Friends__friendI__59904A2C">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__userId__2BB470E3" Association="Self.FK__Friends__userId__2BB470E3">
+          <AssociationSet Name="FK__Friends__userId__589C25F3" Association="Self.FK__Friends__userId__589C25F3">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__TracksGen__genre__597B3B93" Association="Self.FK__TracksGen__genre__597B3B93">
+          <AssociationSet Name="FK__TracksGen__genre__0662F0A3" Association="Self.FK__TracksGen__genre__0662F0A3">
             <End Role="Genre" EntitySet="Genres" />
             <End Role="TracksGenres" EntitySet="TracksGenres" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlist__imageI__475C8B58" Association="Self.FK__Playlist__imageI__475C8B58">
+          <AssociationSet Name="FK__Playlist__imageI__74444068" Association="Self.FK__Playlist__imageI__74444068">
             <End Role="Images" EntitySet="Images" />
             <End Role="Playlist" EntitySet="Playlists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__image__51DA19CB" Association="Self.FK__Playlists__image__51DA19CB">
+          <AssociationSet Name="FK__Playlists__image__7EC1CEDB" Association="Self.FK__Playlists__image__7EC1CEDB">
             <End Role="Images" EntitySet="Images" />
             <End Role="PlaylistsGenres" EntitySet="PlaylistsGenres" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__imageId__3FBB6990" Association="Self.FK__Track__imageId__3FBB6990">
+          <AssociationSet Name="FK__Track__imageId__6CA31EA0" Association="Self.FK__Track__imageId__6CA31EA0">
             <End Role="Images" EntitySet="Images" />
             <End Role="Track" EntitySet="Tracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserInfo__profil__28D80438" Association="Self.FK__UserInfo__profil__28D80438">
+          <AssociationSet Name="FK__UserInfo__profil__55BFB948" Association="Self.FK__UserInfo__profil__55BFB948">
             <End Role="Images" EntitySet="Images" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Subscript__payme__25077354" Association="Self.FK__Subscript__payme__25077354">
+          <AssociationSet Name="FK__Subscript__payme__51EF2864" Association="Self.FK__Subscript__payme__51EF2864">
             <End Role="Payment" EntitySet="Payments" />
             <End Role="Subscription" EntitySet="Subscriptions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlist__userId__4668671F" Association="Self.FK__Playlist__userId__4668671F">
+          <AssociationSet Name="FK__Playlist__userId__73501C2F" Association="Self.FK__Playlist__userId__73501C2F">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Playlist" EntitySet="Playlists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__playl__4A38F803" Association="Self.FK__Playlists__playl__4A38F803">
+          <AssociationSet Name="FK__Playlists__playl__7720AD13" Association="Self.FK__Playlists__playl__7720AD13">
             <End Role="Playlist" EntitySet="Playlists" />
             <End Role="PlaylistsUsers" EntitySet="PlaylistsUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__PlaylistT__favor__4E0988E7" Association="Self.FK__PlaylistT__favor__4E0988E7">
+          <AssociationSet Name="FK__PlaylistT__favor__7AF13DF7" Association="Self.FK__PlaylistT__favor__7AF13DF7">
             <End Role="Playlist" EntitySet="Playlists" />
             <End Role="PlaylistTracks" EntitySet="PlaylistTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__playl__54B68676" Association="Self.FK__Playlists__playl__54B68676">
+          <AssociationSet Name="FK__Playlists__playl__019E3B86" Association="Self.FK__Playlists__playl__019E3B86">
             <End Role="PlaylistsGenres" EntitySet="PlaylistsGenres" />
             <End Role="PlaylistsGenresTracks" EntitySet="PlaylistsGenresTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__track__55AAAAAF" Association="Self.FK__Playlists__track__55AAAAAF">
+          <AssociationSet Name="FK__Playlists__track__02925FBF" Association="Self.FK__Playlists__track__02925FBF">
             <End Role="Track" EntitySet="Tracks" />
             <End Role="PlaylistsGenresTracks" EntitySet="PlaylistsGenresTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Playlists__userI__4B2D1C3C" Association="Self.FK__Playlists__userI__4B2D1C3C">
+          <AssociationSet Name="FK__Playlists__userI__7814D14C" Association="Self.FK__Playlists__userI__7814D14C">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="PlaylistsUsers" EntitySet="PlaylistsUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__PlaylistT__track__4EFDAD20" Association="Self.FK__PlaylistT__track__4EFDAD20">
+          <AssociationSet Name="FK__PlaylistT__track__7BE56230" Association="Self.FK__PlaylistT__track__7BE56230">
             <End Role="Track" EntitySet="Tracks" />
             <End Role="PlaylistTracks" EntitySet="PlaylistTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__RatingsTr__ratin__5C57A83E" Association="Self.FK__RatingsTr__ratin__5C57A83E">
+          <AssociationSet Name="FK__RatingsTr__ratin__093F5D4E" Association="Self.FK__RatingsTr__ratin__093F5D4E">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="RatingsTracks" EntitySet="RatingsTracks" />
           </AssociationSet>
-          <AssociationSet Name="FK__RatingsTr__track__5D4BCC77" Association="Self.FK__RatingsTr__track__5D4BCC77">
+          <AssociationSet Name="FK__RatingsTr__track__0A338187" Association="Self.FK__RatingsTr__track__0A338187">
             <End Role="Track" EntitySet="Tracks" />
             <End Role="RatingsTracks" EntitySet="RatingsTracks" />
           </AssociationSet>
@@ -1355,11 +1377,11 @@
             <End Role="Subscription" EntitySet="Subscriptions" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrackArti__track__4297D63B" Association="Self.FK__TrackArti__track__4297D63B">
+          <AssociationSet Name="FK__TrackArti__track__6F7F8B4B" Association="Self.FK__TrackArti__track__6F7F8B4B">
             <End Role="Track" EntitySet="Tracks" />
             <End Role="TrackArtists" EntitySet="TrackArtists" />
           </AssociationSet>
-          <AssociationSet Name="FK__TracksGen__genre__5887175A" Association="Self.FK__TracksGen__genre__5887175A">
+          <AssociationSet Name="FK__TracksGen__genre__056ECC6A" Association="Self.FK__TracksGen__genre__056ECC6A">
             <End Role="Track" EntitySet="Tracks" />
             <End Role="TracksGenres" EntitySet="TracksGenres" />
           </AssociationSet>
@@ -1515,6 +1537,17 @@
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
                 <ScalarProperty Name="trialPeriod" ColumnName="trialPeriod" />
                 <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SountyModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

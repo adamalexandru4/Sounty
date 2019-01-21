@@ -11,6 +11,7 @@
         <TextBlock Margin               ="25,0,0,0"
                    VerticalAlignment    ="Center"
                    HorizontalAlignment  ="Left"
+                   Width                ="150"
                    FontFamily           ="Montserrat"
                    FontSize             ="14"
                    Foreground           ="White"

@@ -13,14 +13,14 @@ namespace Sounty.ViewModel
         #region Fields
 
         private readonly CoverType type;
+        private readonly int coverId;
 
         #endregion
 
         #region Properties
 
-        public int    CoverId   { get; set; }
-        public string CoverPath { get; set; }
-        public string CoverName { get; set; }
+        public string CoverPath { get; }
+        public string CoverName { get; }
 
         #endregion
 
@@ -35,10 +35,10 @@ namespace Sounty.ViewModel
 
         public HomeItemViewModel(CoverType type, int coverId, string coverPath, string coverName)
         {
-            this.type = type;
-            CoverId   = coverId;
-            CoverPath = coverPath;
-            CoverName = coverName;
+            this.type    = type;
+            this.coverId = coverId;
+            CoverPath    = coverPath;
+            CoverName    = coverName;
 
             PlayCMD = new RelayCommand(param => Play());
             OpenCMD = new RelayCommand(param => Open());
@@ -48,56 +48,90 @@ namespace Sounty.ViewModel
 
         #region Methods
 
+        private void PlayGenrePlaylist()
+        {
+            try
+            {
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var results = from p in context.PlaylistsGenresTracks
+                                  where p.playlistId == coverId
+                                  select new
+                                  {
+                                      p.Track.Image.imagePath,
+                                      p.Track.Album.Artist.fullName,
+                                      p.Track.Album.albumName,
+                                      p.Track.nameTrack,
+                                      p.Track.filepath
+                                  };
+
+                    List<TrackOfPlaylistViewModel> tracks = new List<TrackOfPlaylistViewModel>();
+                    foreach (var result in results)
+                    {
+                        tracks.Add(
+                            new TrackOfPlaylistViewModel()
+                            {
+                                ImagePath   = result.imagePath,
+                                Artist      = result.fullName,
+                                Album       = result.albumName,
+                                TrackName   = result.nameTrack,
+                                FilePath    = result.filepath
+                            });
+                    }
+                    PlayerViewModel.Instance.Init(tracks);
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        private void PlayArtistPlaylist()
+        {
+            try
+            {
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var results = from a in context.TrackArtists
+                                  where a.artistId == coverId
+                                  select new
+                                  {
+                                      a.Track.Image.imagePath,
+                                      a.Track.Album.Artist.fullName,
+                                      a.Track.Album.albumName,
+                                      a.Track.nameTrack,
+                                      a.Track.filepath
+                                  };
+
+                    List<TrackOfPlaylistViewModel> tracks = new List<TrackOfPlaylistViewModel>();
+                    foreach (var result in results)
+                    {
+                        tracks.Add(
+                            new TrackOfPlaylistViewModel()
+                            {
+                                ImagePath   = result.imagePath,
+                                Artist      = result.fullName,
+                                Album       = result.albumName,
+                                TrackName   = result.nameTrack,
+                                FilePath    = result.filepath
+                            });
+                    }
+                    PlayerViewModel.Instance.Init(tracks);
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
         private void Play()
         {
             switch (type)
             {
-                case CoverType.GenrePlaylist:
-                    {
-                        try
-                        {
-                            using (var context = new DataAccess.SountyDB())
-                            {
-                                var results = from p in context.PlaylistsGenresTracks
-                                              join t in context.Tracks
-                                              on p.trackId equals t.trackId
-                                              join i in context.Images
-                                              on t.imageId equals i.imageId
-                                              select new
-                                              {
-                                                  t.filepath,
-                                                  t.nameTrack,
-                                                  i.imagePath
-                                              };
-
-                                List<TrackModel> tracks = new List<TrackModel>();
-                                foreach (var result in results)
-                                {
-                                    tracks.Add(
-                                        new TrackModel(
-                                            result.filepath,
-                                            result.nameTrack,
-                                            result.imagePath));
-                                }
-                                PlayerViewModel.Instance.Init(tracks);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            return;
-                        }
-                    } break;
-                case CoverType.ArtistPlaylist:
-                    {
-                        try
-                        {
-
-                        }
-                        catch (Exception)
-                        {
-                            return;
-                        }
-                    } break;
+                case CoverType.GenrePlaylist:   PlayGenrePlaylist();  break;
+                case CoverType.ArtistPlaylist:  PlayArtistPlaylist(); break;
             }
         }
 

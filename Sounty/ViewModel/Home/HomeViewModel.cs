@@ -50,9 +50,9 @@ namespace Sounty.ViewModel
                         PlaylistsByGenre.Add(
                             new HomeItemViewModel(
                                 HomeItemViewModel.CoverType.GenrePlaylist,
-                                result.playlistId,
-                                result.imagePath,
-                                result.playlistName
+                                    result.playlistId,
+                                    result.imagePath,
+                                    result.playlistName
                                 )
                             );
                     }
@@ -86,9 +86,9 @@ namespace Sounty.ViewModel
                         PlaylistsByArtist.Add(
                             new HomeItemViewModel(
                                 HomeItemViewModel.CoverType.GenrePlaylist,
-                                result.artistId,
-                                result.imagePath,
-                                result.fullName
+                                    result.artistId,
+                                    result.imagePath,
+                                    result.fullName
                                 )
                             );
                     }
