@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ad0c9eec934408e867ae68f95c711fa" Name="Diagram1">
+        <EntityTypeShape EntityType="SountyModel.Album" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Artist" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Concert" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Friend" Width="1.5" PointX="10.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Genre" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Image" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Payment" Width="1.5" PointX="3.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Playlist" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.PlaylistsGenre" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.PlaylistsGenresTrack" Width="1.5" PointX="10.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.PlaylistsUser" Width="1.5" PointX="13.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.PlaylistTrack" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.RatingsTrack" Width="1.5" PointX="12.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Subscription" Width="1.5" PointX="5.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.Track" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.TrackArtist" Width="1.5" PointX="13.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.TracksGenre" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.UserInfo" Width="1.5" PointX="8" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.UserSounty" Width="1.5" PointX="10.25" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="SountyModel.FK__Album__artistId__3A02903A" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Album__genreId__3AF6B473" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Album__imageId__3BEAD8AC" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Track__albumId__3EC74557" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Artist__imageId__32616E72" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Concerts__locati__353DDB1D" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__TrackArti__artis__438BFA74" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Friends__friendI__2CA8951C" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Friends__userId__2BB470E3" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__TracksGen__genre__597B3B93" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlist__imageI__475C8B58" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlists__image__51DA19CB" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Track__imageId__3FBB6990" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__UserInfo__profil__28D80438" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Subscript__payme__25077354" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlist__userId__4668671F" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlists__playl__4A38F803" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__PlaylistT__favor__4E0988E7" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlists__playl__54B68676" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlists__track__55AAAAAF" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__Playlists__userI__4B2D1C3C" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__PlaylistT__track__4EFDAD20" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__RatingsTr__ratin__5C57A83E" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__RatingsTr__track__5D4BCC77" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK_SubscriptionId" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__TrackArti__track__4297D63B" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK__TracksGen__genre__5887175A" ManuallyRouted="false" />
+        <AssociationConnector Association="SountyModel.FK_UserInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

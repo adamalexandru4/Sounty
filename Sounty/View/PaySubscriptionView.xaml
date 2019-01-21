@@ -1,0 +1,100 @@
+﻿<Controls:MetroWindow x:Class="Sounty.View.PaySubscriptionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:Sounty.View"
+        mc:Ignorable="d" 
+        WindowStartupLocation="CenterScreen" 
+        Background="LightGray"
+        BorderThickness="0" ShowCloseButton="False"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        ResizeMode="NoResize" ShowTitleBar="False"
+        WindowTransitionsEnabled="True"
+        Height="320" Width="700"
+        Title="Pay subscription">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/UserEditResources.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Column="0">
+            <TextBlock Text="Payment for subscription" Foreground="OliveDrab"
+                           FontFamily="Bookman" FontSize="25" FontWeight="Regular"/>
+            <TextBlock Text="Payment method" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+            <ComboBox Margin="0 10 0 0"
+                    SelectedItem="{Binding SelectedMethod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding PaymentMethods, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="White"
+                    FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+            <TextBlock Text="Credit card number" Margin="0 22.5 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+            <TextBox Text="{Binding CreditCardNumber,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnNotifyDataErrors=True}" Margin="0 10 0 0"
+                           Foreground="White"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+            <TextBlock Text="Cardholder name" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+            <TextBox Text="{Binding CardHolderName,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnNotifyDataErrors=True}" Margin="0 10 0 0"
+                           Foreground="White"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0 40 0 0" Grid.Column="1">
+            <TextBlock Text="Expiration date" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+            <DatePicker SelectedDate="{Binding ExpirationDate,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        ValidatesOnNotifyDataErrors=True}"
+                        Controls:TextBoxHelper.UseFloatingWatermark="True"
+                        Controls:TextBoxHelper.Watermark="Select date:"
+                        HorizontalAlignment="Left" Width="200"
+                        Margin="0 10 0 0"/>
+
+            <TextBlock Text="CVV" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+            <TextBox Text="{Binding CVV,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnNotifyDataErrors=True}" Margin="0 10 0 0"
+                           Foreground="White" Width="200" HorizontalAlignment="Left"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <Button Content="Pay"
+                        Command="{Binding PayCommand}"
+                Width="80" Margin="10 40 0 0" HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"/>
+                <Button Content="Close"
+                        Command="{Binding CloseCommand}"
+                    Width="80" Margin="10 40 0 0"/>
+                <Controls:ProgressRing Margin="10 38 0 0"
+                                       Visibility="{Binding LoadingPayVisibility,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged,
+                                                    Converter={StaticResource BoolToVisibilityConvert}}"
+                                       Height="25" Width="25"/>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Controls:MetroWindow>

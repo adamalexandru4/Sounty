@@ -35,8 +35,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +73,174 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\Album.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Artist.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Concert.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Friend.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Genre.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Image.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Payment.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Playlist.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PlaylistsGenre.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PlaylistsGenresTrack.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PlaylistsUser.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PlaylistTrack.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RatingsTrack.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SountyDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SountyDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SountyDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SountyDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Subscription.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Track.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackArtist.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TracksGenre.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserInfo.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserSounty.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ImageModel.cs" />
+    <Compile Include="Model\PlaylistModel.cs" />
+    <Compile Include="Model\SignupUserModel.cs" />
+    <Compile Include="Model\TrackModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Resources\IDialog.cs" />
+    <Compile Include="Resources\IPassword.cs" />
+    <Compile Include="Resources\IService.cs" />
+    <Compile Include="Utility\CommandControl.xaml.cs">
+      <DependentUpon>CommandControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\Basic\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\Basic\LoadingWorkspaceViewModel.cs" />
+    <Compile Include="ViewModel\Basic\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Basic\ViewModelBase.cs" />
+    <Compile Include="ViewModel\Dialogs\EditPlaylistDialogViewModel.cs" />
+    <Compile Include="ViewModel\Home\HomeItemViewModel.cs" />
+    <Compile Include="ViewModel\Home\HomeViewModel.cs" />
+    <Compile Include="ViewModel\Login\HomeLoginViewModel.cs" />
+    <Compile Include="ViewModel\Menu\MenuItemViewModel.cs" />
+    <Compile Include="ViewModel\Menu\MenuViewModel.cs" />
+    <Compile Include="ViewModel\Player\PlayerViewModel.cs" />
+    <Compile Include="ViewModel\Playlist\PlaylistTracksViewModel.cs" />
+    <Compile Include="ViewModel\Playlist\TrackItemViewModel.cs" />
+    <Compile Include="ViewModel\Playlist\TrackOfPlaylistViewModel.cs" />
+    <Compile Include="ViewModel\User\EditUserViewModel.cs" />
+    <Compile Include="ViewModel\User\FriendsListViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\EditProfileViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\EditUserFirstPageViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\EditUserMainPageViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\PaySubscriptionDialogViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\SubscriptionItemViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\SubscriptionViewModel.cs" />
+    <Compile Include="ViewModel\User\UserRightSideViewModel.cs" />
+    <Compile Include="View\Basic\LoadingWorkspaceView.xaml.cs">
+      <DependentUpon>LoadingWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Basic\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\EditPlaylistDialogView.xaml.cs">
+      <DependentUpon>EditPlaylistDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUserMainPageView.xaml.cs">
+      <DependentUpon>EditUserMainPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\HomeItemView.xaml.cs">
+      <DependentUpon>HomeItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\HomeLoginView.xaml.cs">
+      <DependentUpon>HomeLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\MenuItemView.xaml.cs">
+      <DependentUpon>MenuItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaySubscriptionView.xaml.cs">
+      <DependentUpon>PaySubscriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Player\PlayerView.xaml.cs">
+      <DependentUpon>PlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Playlist\PlaylistView.xaml.cs">
+      <DependentUpon>PlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Playlist\TrackItemView.xaml.cs">
+      <DependentUpon>TrackItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\EditUserView.xaml.cs">
+      <DependentUpon>EditUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\FriendsListView.xaml.cs">
+      <DependentUpon>FriendsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\Pages\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\Pages\EditUserFirstPageView.xaml.cs">
+      <DependentUpon>EditUserFirstPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\Pages\SubscriptionItemView.xaml.cs">
+      <DependentUpon>SubscriptionItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\Pages\SubscriptionView.xaml.cs">
+      <DependentUpon>SubscriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\UserRightSideView.xaml.cs">
+      <DependentUpon>UserRightSideView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +253,106 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Code resources\PlaylistViewResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MainWindowResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\UserEditResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utility\CommandControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Basic\LoadingWorkspaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Basic\MainWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Dialogs\EditPlaylistDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EditUserMainPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Home\HomeItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Home\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Login\HomeLoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Menu\MenuItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Menu\MenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PaySubscriptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Player\PlayerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Playlist\PlaylistView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Playlist\TrackItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\EditUserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\FriendsListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\Pages\ChangePasswordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\Pages\EditUserFirstPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\Pages\SubscriptionItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\Pages\SubscriptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\UserRightSideView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +372,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DataAccess\SountyDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SountyDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataAccess\SountyDB.edmx.diagram">
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +387,86 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataAccess\SountyDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SountyDB.Context.cs</LastGenOutput>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess\SountyDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+      <LastGenOutput>SountyDB.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\Albums\RINGOS DESERT.jpg" />
+    <Resource Include="Resources\Artists\ZHU.jpg" />
+    <Resource Include="Resources\Controls\equalizer.png" />
+    <Resource Include="Resources\Controls\left.png" />
+    <Resource Include="Resources\Controls\menu.png" />
+    <Resource Include="Resources\Controls\mute.png" />
+    <Resource Include="Resources\Controls\next.png" />
+    <Resource Include="Resources\Controls\pause.png" />
+    <Resource Include="Resources\Controls\play.png" />
+    <Resource Include="Resources\Controls\previous.png" />
+    <Resource Include="Resources\Controls\repeat.png" />
+    <Resource Include="Resources\Controls\right.png" />
+    <Resource Include="Resources\Controls\shuffle.png" />
+    <Resource Include="Resources\Controls\stop.png" />
+    <Resource Include="Resources\Controls\unmute.png" />
+    <Resource Include="Resources\Images\background.jpg" />
+    <Resource Include="Resources\Images\editProfileCover.jpg" />
+    <Resource Include="Resources\Images\editProfileCover1.jpg" />
+    <Resource Include="Resources\Images\FullSubscription.png" />
+    <Resource Include="Resources\Images\icon.png" />
+    <Resource Include="Resources\Images\Icons\FacebookIcon.png" />
+    <Resource Include="Resources\Images\Icons\FreeTrial.png" />
+    <Resource Include="Resources\Images\Icons\InstagramIcon.png" />
+    <Resource Include="Resources\Images\Icons\OfflineIcon.png" />
+    <Resource Include="Resources\Images\Icons\OnlineIcon.png" />
+    <Resource Include="Resources\Images\Icons\PremiumAccount.png" />
+    <Resource Include="Resources\Images\Icons\YoutubeIcon.png" />
+    <Resource Include="Resources\Images\ItemSubscription.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\NoImage.png" />
+    <Resource Include="Resources\Images\NoProfileImage.png" />
+    <Resource Include="Resources\Images\playPlaylistIcon.png" />
+    <Resource Include="Resources\Images\searchIcon.png" />
+    <Resource Include="Resources\Images\TrialSubscription.png" />
+    <Resource Include="Resources\Images\userHello.gif" />
+    <Resource Include="Resources\Images\x_icon.png" />
+    <Resource Include="Resources\NoImage.png" />
+    <Resource Include="Resources\playPlaylistIcon.png" />
+    <Resource Include="Resources\Profile\Alexandru Adam.jpg" />
+    <Resource Include="Resources\Songs\Track %281%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2810%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2811%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2812%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2813%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2814%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2815%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2816%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2817%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2818%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2819%29.jpg" />
+    <Resource Include="Resources\Songs\Track %282%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2820%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2821%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2822%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2823%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2824%29.jpg" />
+    <Resource Include="Resources\Songs\Track %2825%29.jpg" />
+    <Resource Include="Resources\Songs\Track %283%29.jpg" />
+    <Resource Include="Resources\Songs\Track %284%29.jpg" />
+    <Resource Include="Resources\Songs\Track %285%29.jpg" />
+    <Resource Include="Resources\Songs\Track %286%29.jpg" />
+    <Resource Include="Resources\Songs\Track %287%29.jpg" />
+    <Resource Include="Resources\Songs\Track %288%29.jpg" />
+    <Resource Include="Resources\Songs\Track %289%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

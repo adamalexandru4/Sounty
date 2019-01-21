@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="Sounty.View.EditUserFirstPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sounty.View"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/UserEditResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Height="400" Width="380" Grid.RowSpan="2" Margin="0 0 0 0"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Style="{StaticResource FlatBorder}">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Profile" Foreground="OliveDrab"
+                           FontFamily="Bookman" FontSize="25" FontWeight="Regular"/>
+                <TextBlock Text="Username" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+                <TextBlock Text="{Binding Username}" Margin="0 10 0 0"
+                           Foreground="DarkOliveGreen"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+                <TextBlock Text="Name" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+                <TextBlock Text="{Binding FullName}" Margin="0 10 0 0"
+                           Foreground="DarkOliveGreen"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+                <TextBlock Text="Address" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+                <TextBlock Text="{Binding Address}" Margin="0 10 0 0"
+                           Foreground="DarkOliveGreen"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+                <TextBlock Text="Phone number" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+                <TextBlock Text="{Binding PhoneNumber}" Margin="0 10 0 0"
+                           Foreground="DarkOliveGreen"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+                <TextBlock Text="Date of birth" Margin="0 10 0 0"
+                           Foreground="Black"
+                           FontFamily="Bookman" FontSize="15" FontWeight="Light"/>
+                <TextBlock Text="{Binding BirthDate}" Margin="0 10 0 0"
+                           Foreground="DarkOliveGreen"
+                           FontFamily="Bookman" FontSize="15" FontWeight="DemiBold"/>
+
+
+            </StackPanel>
+        </Border>
+
+        <Border Height="200" Width="380" Grid.Row="0" Grid.Column="1" Margin="0 0 0 0"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                Style="{StaticResource FlatBorder}">
+            <StackPanel Margin="10">
+                <TextBlock Text="Subscription" Foreground="OliveDrab"
+                           FontFamily="Bookman" FontSize="25" FontWeight="Regular"/>
+                <Grid>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding NotPremiumVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConvert}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="10" HorizontalAlignment="Center"
+                            Text="Sounty not premium user" Grid.Row="0" Grid.Column="0" Foreground="Red"
+                            FontFamily="Montserrat" FontWeight="Medium" FontSize="20"/>
+                            <Image Source="/Resources/Images/Icons/FreeTrial.png" RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="20" Width="20"/>
+                        </StackPanel>
+                        <TextBlock Text="Pay your subscription. Hurry up!"
+                           Foreground="Black" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding PremiumVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConvert}}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="10" HorizontalAlignment="Center"
+                            Text="Sounty premium user" Grid.Row="0" Grid.Column="0" Foreground="OliveDrab"
+                            FontFamily="Montserrat" FontWeight="Medium" FontSize="20"/>
+                            <Image Source="/Resources/Images/Icons/PremiumAccount.png" RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="20" Width="20"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding SubscriptionDate}"
+                           Foreground="Black" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+                <Button Height="30" Width="120" Margin="0 50 0 0"
+                        Content="Manage subscription"
+                        FontWeight="Light"
+                        BorderThickness="0"
+                        Command="{Binding SubscriptionCommand}"
+                        Style="{StaticResource AccentedSquareButtonStyle}"
+                        />
+            </StackPanel>
+        </Border>
+
+        <Border Height="100" Width="380" Grid.Row="1" Grid.Column="1" Margin="0 100 0 0"
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Style="{StaticResource FlatBorder}">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Sign out now" Foreground="OliveDrab"
+                           FontFamily="Bookman" FontSize="25" FontWeight="Regular"/>
+                <TextBlock Text="If you want to say goodbye, just press the button."
+                           Foreground="Black"/>
+                <Button Height="30" Width="60" Content="Sign out" 
+                        BorderThickness="0"
+                        Command="{Binding SignOutCommand}"
+                        Style="{StaticResource AccentedSquareButtonStyle}"
+                        Margin="0 0 10 0" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

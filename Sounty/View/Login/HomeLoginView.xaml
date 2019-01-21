@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="Sounty.View.HomeLoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sounty.View"
+             mc:Ignorable="d" 
+             x:Name="homeLoginView"
+             d:DesignHeight="800" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </UserControl.Resources>
+    
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Resources/Images/background.jpg" RenderOptions.BitmapScalingMode="HighQuality" />
+    </UserControl.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Image Source="/Resources/Images/logo.png" 
+               Height="150" Width="150" VerticalAlignment="Bottom"
+               Grid.Column="2"/>
+
+        <Grid Grid.Row="1" Grid.Column="2"
+              Visibility="{Binding LoginVisibility, 
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource BooleanToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Sign up" 
+                    Grid.Row="0" Margin="5" Width="75" Height="35"
+                    Command="{Binding SignUpRequestCommand}"/>
+
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center">
+                <Line Margin="2.5" X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1"/>
+                <TextBlock Text="OR" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Line Margin="2.5" X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1"/>
+            </TextBlock>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding UsernameLogin}" Grid.ColumnSpan="2"
+                    Controls:TextBoxHelper.Watermark="Username" 
+                         HorizontalAlignment="Center"
+                    Margin="5" Height="25" Width="180"/>
+                <TextBlock Text="Incorrect username" 
+                       Visibility="{Binding IncorrectUsernameVisibility,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource BooleanToVisibility}}"
+                       FontFamily="Segoe UI Bold"
+                       HorizontalAlignment="Center" Foreground="Red"
+                       Grid.Row="2" VerticalAlignment="Center"
+                       Margin="5" Grid.Column="1"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <PasswordBox x:Name="PasswordUserLogin"
+                    Controls:TextBoxHelper.Watermark="Password"
+                    Grid.ColumnSpan="2" Width="180"
+                    Margin="5" Height="25"/>
+                <TextBlock Text="Incorrect password" 
+                       Visibility="{Binding IncorrectPasswordVisibility,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource BooleanToVisibility}}"
+                       FontFamily="Segoe UI Bold"
+                       HorizontalAlignment="Center" Foreground="Red"
+                       Grid.Row="2" VerticalAlignment="Center"
+                       Margin="5" Grid.Column="1"/>
+            </Grid>
+            <StackPanel Grid.Row="4" Orientation="Horizontal"
+                         Margin="60 0 0 0" Width="100">
+                <Button Content="Login" Height="30"
+                    CommandParameter="{Binding ElementName=homeLoginView}"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding LoginCommand}"/>
+                <Controls:ProgressRing Margin="5 0 0 0"
+                                       Visibility="{Binding LoadingVisibility,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged,
+                                                    Converter={StaticResource BooleanToVisibility}}"
+                                       Height="25" Width="25"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2"
+              Visibility="{Binding SignUpVisibility,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource BooleanToVisibility}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Button Margin="-150 0 0 0" Width="45" Height="30"
+                    Content="Back" HorizontalAlignment="Center"
+                    Command="{Binding BackFromSignupCommand}">
+            </Button>
+
+            <TextBox Text="{Binding SignupUserModel.Username,
+                            UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnNotifyDataErrors=True}" 
+                    Controls:TextBoxHelper.Watermark="Username"
+                    Height="25" Width="200" Grid.Row="1"/>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Text="{Binding SignupUserModel.FirstName,
+                                ValidatesOnNotifyDataErrors=True}" 
+                        Controls:TextBoxHelper.Watermark="First name" Margin="0 0 10 0" 
+                        Height="25" Width="90" Grid.Column="0" HorizontalAlignment="Right"/>
+                <TextBox Text="{Binding SignupUserModel.LastName,
+                                Mode=TwoWay,
+                                ValidatesOnNotifyDataErrors=True}" 
+                        Controls:TextBoxHelper.Watermark="Last name" Margin="10 0 0 0"
+                         Height="25" Width="90" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+
+            <PasswordBox x:Name="PasswordUserSignup"
+                     Controls:TextBoxHelper.Watermark="Password"
+                     Height="25" Width="200" Grid.Row="3"/>
+
+            <TextBox Text="{Binding SignupUserModel.PhoneNumber,
+                                Mode=TwoWay,
+                                ValidatesOnNotifyDataErrors=True}" 
+                    Controls:TextBoxHelper.Watermark="Phone number"
+                    Height="25" Width="200" Grid.Row="4"/>
+
+            <DatePicker SelectedDate="{Binding SignupUserModel.BirthdayDate,
+                                        Mode=TwoWay,
+                                        ValidatesOnNotifyDataErrors=True}"
+                        Controls:TextBoxHelper.UseFloatingWatermark="True"
+                        Controls:TextBoxHelper.Watermark="Birthday date:"
+                        Grid.Row="5" Height="45" Width="200"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="6"
+                        Margin="50 0 0 0" Width="100" Height="35">
+                <Button Content="Sign up" 
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding SignupDoneCommand}"
+                    CommandParameter="{Binding ElementName=homeLoginView}"
+                    />
+                <Controls:ProgressRing Margin="5 0 0 0"
+                                       Visibility="{Binding LoadingSignupVisibility,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged,
+                                                    Converter={StaticResource BooleanToVisibility}}"
+                                       Height="25" Width="25"/>
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

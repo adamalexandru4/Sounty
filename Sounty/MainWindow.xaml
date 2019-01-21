@@ -1,12 +1,19 @@
-﻿<Window x:Class="Sounty.MainWindow"
+﻿<Controls:MetroWindow x:Class="Sounty.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Sounty"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
-</Window>
+        MinWidth="1200" MinHeight="800" WindowState="Maximized"
+        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False"
+        Title="{Binding Path=DisplayName}">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <HeaderedContentControl Content="{Binding MainPage}"
+                            Style="{StaticResource MainHCCStyle}" />
+
+</Controls:MetroWindow>
