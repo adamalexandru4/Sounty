@@ -8,6 +8,9 @@ namespace Sounty.ViewModel
     {
         #region Properties
 
+        public string GenreImage    { get; private set; }
+        public string GenreName     { get; private set; }
+
         private TrackOfPlaylistViewModel selectedSong;
         public  TrackOfPlaylistViewModel SelectedSong
         {
@@ -30,6 +33,8 @@ namespace Sounty.ViewModel
 
         public GenrePlaylistViewModel(int genrePlayslistId)
         {
+            Load_Data(genrePlayslistId);
+
             Songs = new ObservableCollection<TrackOfPlaylistViewModel>();
             Load_Songs(genrePlayslistId);
         }
@@ -37,6 +42,30 @@ namespace Sounty.ViewModel
         #endregion
 
         #region Methods
+
+        private void Load_Data(int genrePlaylistId)
+        {
+            try
+            {
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var result = (from p in context.PlaylistsGenres
+                                  where p.playlistId == genrePlaylistId
+                                  select new
+                                  {
+                                      p.playlistName,
+                                      p.Image.imagePath
+                                  }).Single();
+
+                    GenreImage  = result.imagePath;
+                    GenreName   = result.playlistName;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
 
         private void Load_Songs(int genrePlayslistId)
         {
