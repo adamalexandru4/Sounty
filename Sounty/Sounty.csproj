@@ -159,6 +159,10 @@
       <DependentUpon>CommandControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\Artist\AboutViewModel.cs" />
+    <Compile Include="ViewModel\Artist\ArtistViewModel.cs" />
+    <Compile Include="ViewModel\Artist\ConcertsViewModel.cs" />
+    <Compile Include="ViewModel\Artist\SongsViewModel.cs" />
     <Compile Include="ViewModel\Basic\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\Basic\LoadingWorkspaceViewModel.cs" />
     <Compile Include="ViewModel\Basic\MainWindowViewModel.cs" />
@@ -170,6 +174,7 @@
     <Compile Include="ViewModel\Menu\MenuItemViewModel.cs" />
     <Compile Include="ViewModel\Menu\MenuViewModel.cs" />
     <Compile Include="ViewModel\Player\PlayerViewModel.cs" />
+    <Compile Include="ViewModel\Playlist\GenrePlaylistViewModel.cs" />
     <Compile Include="ViewModel\Playlist\PlaylistTracksViewModel.cs" />
     <Compile Include="ViewModel\Playlist\TrackItemViewModel.cs" />
     <Compile Include="ViewModel\Playlist\TrackOfPlaylistViewModel.cs" />
@@ -185,6 +190,18 @@
     <Compile Include="ViewModel\User\Pages\SubscriptionViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\UserFriendsViewModel.cs" />
     <Compile Include="ViewModel\User\UserRightSideViewModel.cs" />
+    <Compile Include="View\Artist\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Artist\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Artist\ConcertsView.xaml.cs">
+      <DependentUpon>ConcertsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Artist\SongsView.xaml.cs">
+      <DependentUpon>SongsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Basic\LoadingWorkspaceView.xaml.cs">
       <DependentUpon>LoadingWorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -220,6 +237,9 @@
     </Compile>
     <Compile Include="View\Player\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Playlist\GenrePlaylistView.xaml.cs">
+      <DependentUpon>GenrePlaylistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Playlist\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
@@ -291,6 +311,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Artist\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Artist\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Artist\ConcertsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Artist\SongsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Basic\LoadingWorkspaceView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -338,6 +374,10 @@
     <Page Include="View\Player\PlayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Playlist\GenrePlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Playlist\PlaylistView.xaml">
       <Generator>MSBuild:Compile</Generator>

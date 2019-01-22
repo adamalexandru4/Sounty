@@ -137,7 +137,17 @@ namespace Sounty.ViewModel
 
         private void Open()
         {
-
+            switch (type)
+            {
+                case CoverType.GenrePlaylist:
+                    {
+                        MainWindowViewModel.Instance.Workspace = new GenrePlaylistViewModel(coverId);
+                    } break;
+                case CoverType.ArtistPlaylist:
+                    {
+                        MainWindowViewModel.Instance.Workspace = new ArtistViewModel(coverId);
+                    } break;
+            }
         }
 
         #endregion

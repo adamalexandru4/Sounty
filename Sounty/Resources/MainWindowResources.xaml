@@ -59,6 +59,34 @@
         <vw:PlaylistView/>
     </DataTemplate>
 
+    <DataTemplate
+        DataType="{x:Type vm:GenrePlaylistViewModel}">
+        <vw:GenrePlaylistView/>
+    </DataTemplate>
+        
+    <!---->
+    <!--Artist-->
+
+    <DataTemplate
+        DataType="{x:Type vm:ArtistViewModel}">
+        <vw:ArtistView/>
+    </DataTemplate>
+
+    <DataTemplate
+        DataType="{x:Type vm:SongsViewModel}">
+        <vw:SongsView/>
+    </DataTemplate>
+
+    <DataTemplate
+        DataType="{x:Type vm:AboutViewModel}">
+        <vw:AboutView/>
+    </DataTemplate>
+
+    <DataTemplate
+        DataType="{x:Type vm:ConcertsViewModel}">
+        <vw:ConcertsView/>
+    </DataTemplate>
+
     <!---->
     <!--User-->
     
