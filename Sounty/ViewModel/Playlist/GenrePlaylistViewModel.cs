@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -7,6 +8,9 @@ namespace Sounty.ViewModel
     class GenrePlaylistViewModel : ViewModelBase
     {
         #region Properties
+
+        public string GenreImage    { get; private set; }
+        public string GenreName     { get; private set; }
 
         private TrackOfPlaylistViewModel selectedSong;
         public  TrackOfPlaylistViewModel SelectedSong
@@ -26,17 +30,51 @@ namespace Sounty.ViewModel
 
         #endregion
 
+        #region Commands
+
+        public RelayCommand PlayCMD { get; }
+
+        #endregion
+
         #region Constructors
 
         public GenrePlaylistViewModel(int genrePlayslistId)
         {
+            Load_Data(genrePlayslistId);
+
             Songs = new ObservableCollection<TrackOfPlaylistViewModel>();
             Load_Songs(genrePlayslistId);
+
+            PlayCMD = new RelayCommand(param => Play());
         }
 
         #endregion
 
         #region Methods
+
+        private void Load_Data(int genrePlaylistId)
+        {
+            try
+            {
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var result = (from p in context.PlaylistsGenres
+                                  where p.playlistId == genrePlaylistId
+                                  select new
+                                  {
+                                      p.playlistName,
+                                      p.Image.imagePath
+                                  }).Single();
+
+                    GenreImage  = result.imagePath;
+                    GenreName   = result.playlistName;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
 
         private void Load_Songs(int genrePlayslistId)
         {
@@ -51,7 +89,8 @@ namespace Sounty.ViewModel
                                       p.Track.Image.imagePath,
                                       p.Track.Album.Artist.fullName,
                                       p.Track.Album.albumName,
-                                      p.Track.nameTrack
+                                      p.Track.nameTrack,
+                                      p.Track.filepath
                                   };
 
                     foreach (var result in results)
@@ -61,7 +100,8 @@ namespace Sounty.ViewModel
                             ImagePath   = result.imagePath,
                             Artist      = result.fullName,
                             Album       = result.albumName,
-                            TrackName   = result.nameTrack
+                            TrackName   = result.nameTrack,
+                            FilePath    = result.filepath
                         });
                     }
                 }
@@ -70,6 +110,13 @@ namespace Sounty.ViewModel
             {
                 return;
             }
+        }
+
+        private void Play()
+        {
+            List<TrackOfPlaylistViewModel> tracks =
+                new List<TrackOfPlaylistViewModel>(Songs);
+            PlayerViewModel.Instance.Init(tracks);
         }
 
         #endregion
