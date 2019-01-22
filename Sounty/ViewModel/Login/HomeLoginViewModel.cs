@@ -285,7 +285,7 @@ namespace Sounty.ViewModel
 
                     user.lastLogin = DateTime.Now;
                     user.activeStatus = true;
-                    context.SaveChanges();
+                    context.SaveChangesAsync();
                     
                     var main = MainWindowViewModel.Instance;
                     MainWindowViewModel.FillUserInfo(userId);
@@ -302,7 +302,7 @@ namespace Sounty.ViewModel
             };
         }
 
-        async void Login(object parameter)
+        void Login(object parameter)
         {
             IncorrectUsernameVisibility = false;
             IncorrectPasswordVisibility = false;
@@ -315,7 +315,7 @@ namespace Sounty.ViewModel
                 passwordLogin = ConvertToUnsecureString(secureString);
             }
 
-            await Task.Run(() => CheckUserDatabase());
+            CheckUserDatabase();
         }
 
         private string ConvertToUnsecureString(SecureString securePassword)

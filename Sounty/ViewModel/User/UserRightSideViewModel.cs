@@ -216,7 +216,7 @@ namespace Sounty.ViewModel
                     else
                         NotPremiumVisibility = true;
                     
-                    context.SaveChangesAsync();
+                    context.SaveChanges();
                 }
             }
             catch(Exception)
