@@ -141,7 +141,7 @@ namespace Sounty.ViewModel
             {
                 case CoverType.GenrePlaylist:
                     {
-
+                        MainWindowViewModel.Instance.Workspace = new GenrePlaylistViewModel(coverId);
                     } break;
                 case CoverType.ArtistPlaylist:
                     {

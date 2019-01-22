@@ -59,6 +59,11 @@
         <vw:PlaylistView/>
     </DataTemplate>
 
+    <DataTemplate
+        DataType="{x:Type vm:GenrePlaylistViewModel}">
+        <vw:GenrePlaylistView/>
+    </DataTemplate>
+        
     <!---->
     <!--Artist-->
 
