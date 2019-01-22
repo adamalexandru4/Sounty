@@ -6,6 +6,29 @@
              mc:Ignorable   ="d">
 
     <UserControl.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="OliveDrab"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness ="1"
+                                Background      ="{TemplateBinding Background}"
+                                CornerRadius    ="15"
+                                Padding         ="2">
+                            <ContentPresenter
+                                VerticalAlignment   ="Center"
+                                HorizontalAlignment ="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkOliveGreen"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="Button">
             <Setter Property="Margin"            Value="20,0,0,0"/>
             <Setter Property="VerticalAlignment" Value="Center"  />
@@ -53,35 +76,52 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="95"/>
+            <RowDefinition Height="95" />
             <RowDefinition Height="75" />
+            <RowDefinition Height="35" />
             <RowDefinition Height="35" />
             <RowDefinition Height="*"  />
         </Grid.RowDefinitions>
-        <Border Grid.RowSpan    ="3"
+        <Border Grid.RowSpan    ="4"
                 BorderThickness ="0"
                 BorderBrush     ="Transparent"
                 Background      ="{StaticResource LinearGradientBW}"/>
-
+        
         <TextBlock Grid.Row             ="0"
-                   Margin               ="25,0"
+                   Margin               ="20,0"
                    VerticalAlignment    ="Bottom"
                    HorizontalAlignment  ="Left"
+                   FontFamily           ="Montserrat"
                    FontSize             ="20"
                    FontWeight           ="Light"
                    Foreground           ="White"
                    Text                 ="Artist"/>
         <TextBlock Grid.Row             ="1"
-                   Margin               ="25,10"
+                   Margin               ="20,10"
                    FontSize             ="40"
                    FontWeight           ="DemiBold"
                    Foreground           ="White"
-                   Text                 ="Lady Gaga"/>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="SONGS" Margin="25,0,0,0"/>
-            <Button Content="ABOUT"/>
-            <Button Content="CONCERTS"/>
+                   Text                 ="{Binding ArtistName}"/>
+        
+        <Button Grid.Row            ="2"
+                Margin              ="20,0"
+                HorizontalAlignment ="Left"
+                Style               ="{StaticResource RoundedButtonStyle}"
+                Width               ="80"
+                Command             ="{Binding PlayCMD}"
+                Content             ="Play"/>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Command ="{Binding SongsCMD}"
+                    Margin  ="20,0,0,0"
+                    Content ="SONGS"/>
+            <Button Command ="{Binding AboutCMD}"
+                    Content ="ABOUT"/>
+            <Button Command ="{Binding ConcertsCMD}"
+                    Content ="CONCERTS"/>
         </StackPanel>
+
+        <ContentControl Grid.Row="5" Content="{Binding CurrentPage}"/>
     </Grid>
     
 </UserControl>

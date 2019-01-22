@@ -85,7 +85,7 @@ namespace Sounty.ViewModel
                     {
                         PlaylistsByArtist.Add(
                             new HomeItemViewModel(
-                                HomeItemViewModel.CoverType.GenrePlaylist,
+                                HomeItemViewModel.CoverType.ArtistPlaylist,
                                     result.artistId,
                                     result.imagePath,
                                     result.fullName

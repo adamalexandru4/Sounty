@@ -53,8 +53,9 @@ namespace Sounty.ViewModel
 
         #region Commands
 
-        public RelayCommand ShowHomePageCMD  { get; private set; }
-        public RelayCommand ShowRadioPageCMD { get; private set; }
+        public RelayCommand ShowHomePageCMD   { get; }
+        public RelayCommand ShowBrowsePageCMD { get; }
+        public RelayCommand ShowRadioPageCMD  { get; }
 
         #endregion
 
@@ -64,8 +65,9 @@ namespace Sounty.ViewModel
         {
             PlaylistsList = new ObservableCollection<MenuItemViewModel>();
 
-            ShowHomePageCMD  = new RelayCommand(param => ShowHomePage());
-            ShowRadioPageCMD = new RelayCommand(param => ShowRadioPage());
+            ShowHomePageCMD   = new RelayCommand(param => ShowHomePage());
+            ShowBrowsePageCMD = new RelayCommand(param => ShowBrowsePage());
+            ShowRadioPageCMD  = new RelayCommand(param => ShowRadioPage());
 
             Load_PlaylistsList();
         }
@@ -107,6 +109,11 @@ namespace Sounty.ViewModel
             MainWindowViewModel.Instance.Workspace = new HomeViewModel();
 
             SelectedPlaylist = null;
+        }
+
+        private void ShowBrowsePage()
+        {
+
         }
 
         private void ShowRadioPage()

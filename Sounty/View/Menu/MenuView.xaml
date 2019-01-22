@@ -103,7 +103,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="105" />
+            <RowDefinition Height="140" />
             <RowDefinition Height="35"  />
             <RowDefinition Height="*"   />
         </Grid.RowDefinitions>
@@ -116,6 +116,15 @@
                            FontWeight           ="DemiBold"
                            Foreground           ="White"
                            Text                 ="Home"/>
+            </Button>
+            <Button Command="{Binding ShowBrowsePageCMD}">
+                <TextBlock Margin="25,0,0,0"
+                           VerticalAlignment    ="Center"
+                           HorizontalAlignment  ="Left"
+                           FontSize             ="14"
+                           FontWeight           ="DemiBold"
+                           Foreground           ="White"
+                           Text                 ="Browse"/>
             </Button>
             <Button Command="{Binding ShowRadioPageCMD}">
                 <TextBlock Margin="25,0,0,0"

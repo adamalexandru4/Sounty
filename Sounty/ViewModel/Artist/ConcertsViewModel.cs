@@ -1,7 +1,6 @@
 ﻿namespace Sounty.ViewModel
 {
-    class ArtistViewModel : ViewModelBase
+    class ConcertsViewModel : ViewModelBase
     {
-
     }
 }
