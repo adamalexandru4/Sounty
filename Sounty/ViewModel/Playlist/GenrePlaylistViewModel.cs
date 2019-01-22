@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -29,6 +30,12 @@ namespace Sounty.ViewModel
 
         #endregion
 
+        #region Commands
+
+        public RelayCommand PlayCMD { get; }
+
+        #endregion
+
         #region Constructors
 
         public GenrePlaylistViewModel(int genrePlayslistId)
@@ -37,6 +44,8 @@ namespace Sounty.ViewModel
 
             Songs = new ObservableCollection<TrackOfPlaylistViewModel>();
             Load_Songs(genrePlayslistId);
+
+            PlayCMD = new RelayCommand(param => Play());
         }
 
         #endregion
@@ -80,7 +89,8 @@ namespace Sounty.ViewModel
                                       p.Track.Image.imagePath,
                                       p.Track.Album.Artist.fullName,
                                       p.Track.Album.albumName,
-                                      p.Track.nameTrack
+                                      p.Track.nameTrack,
+                                      p.Track.filepath
                                   };
 
                     foreach (var result in results)
@@ -90,7 +100,8 @@ namespace Sounty.ViewModel
                             ImagePath   = result.imagePath,
                             Artist      = result.fullName,
                             Album       = result.albumName,
-                            TrackName   = result.nameTrack
+                            TrackName   = result.nameTrack,
+                            FilePath    = result.filepath
                         });
                     }
                 }
@@ -99,6 +110,13 @@ namespace Sounty.ViewModel
             {
                 return;
             }
+        }
+
+        private void Play()
+        {
+            List<TrackOfPlaylistViewModel> tracks =
+                new List<TrackOfPlaylistViewModel>(Songs);
+            PlayerViewModel.Instance.Init(tracks);
         }
 
         #endregion

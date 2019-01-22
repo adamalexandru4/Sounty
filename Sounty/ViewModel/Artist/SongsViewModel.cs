@@ -51,7 +51,8 @@ namespace Sounty.ViewModel
                                       t.Track.Image.imagePath,
                                       t.Track.Album.Artist.fullName,
                                       t.Track.Album.albumName,
-                                      t.Track.nameTrack
+                                      t.Track.nameTrack,
+                                      t.Track.filepath
                                   };
 
                     foreach (var result in results)
@@ -61,7 +62,8 @@ namespace Sounty.ViewModel
                             ImagePath   = result.imagePath,
                             Artist      = result.fullName,
                             Album       = result.albumName,
-                            TrackName   = result.nameTrack
+                            TrackName   = result.nameTrack,
+                            FilePath    = result.filepath
                         });
                     }
                 }
