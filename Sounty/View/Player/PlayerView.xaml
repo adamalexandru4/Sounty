@@ -201,7 +201,7 @@
                     BorderThickness     ="0"
                     BorderBrush         ="Transparent">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding CrrtPage.ImagePath}"
+                    <ImageBrush ImageSource="{Binding CrrtPlaying.ImagePath}"
                                 RenderOptions.BitmapScalingMode ="HighQuality"
                                 RenderOptions.EdgeMode          ="Aliased"
                                 Stretch                         ="UniformToFill"/>

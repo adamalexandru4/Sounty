@@ -174,6 +174,7 @@ namespace Sounty.ViewModel
                                          d.trackId,
                                          d.albumId,
                                          d.filepath,
+                                         d.Image.imagePath,
                                          d.nameTrack
                                      }).First();
 
@@ -202,7 +203,8 @@ namespace Sounty.ViewModel
                         TrackName = trackName.nameTrack,
                         Artist = artistsNames,
                         Album = albumName,
-                        FilePath = trackName.filepath
+                        FilePath = trackName.filepath,
+                        ImagePath = trackName.imagePath
                     };
 
                     list.Add(track);
@@ -422,8 +424,12 @@ namespace Sounty.ViewModel
 
         void PlayCurrentPlaylist()
         {
-            List<TrackOfPlaylistViewModel> tracks
-                        = new List<TrackOfPlaylistViewModel>(allTracks);
+            List<TrackOfPlaylistViewModel> tracks = new List<TrackOfPlaylistViewModel>(allTracks);
+            if (UserRightSideViewModel.Instance.NotPremiumVisibility == true)
+            {
+                tracks.Add(new TrackOfPlaylistViewModel { FilePath = @"D:\Sounty\Sounty\Resources\Reclama.mp3" });
+            }
+            
             PlayerViewModel.Instance.Init(tracks);
         }
 

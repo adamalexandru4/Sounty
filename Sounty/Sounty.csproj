@@ -528,16 +528,6 @@
     <Folder Include="Resources\Artists\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataAccess\SountyDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SountyDB.edmx</DependentUpon>
-      <LastGenOutput>SountyDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccess\SountyDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SountyDB.edmx</DependentUpon>
-      <LastGenOutput>SountyDB.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\Controls\plus.png" />
     <Resource Include="Resources\Images\HomeScreen.jpg" />
     <Resource Include="Resources\Genres\Acoustic.jpg" />
@@ -548,6 +538,18 @@
     <Resource Include="Resources\Genres\Pop.jpg" />
     <Resource Include="Resources\Genres\Rock.jpg" />
     <Resource Include="Resources\Images\Icons\AddIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataAccess\SountyDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+      <LastGenOutput>SountyDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\SountyDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+      <LastGenOutput>SountyDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
