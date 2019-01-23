@@ -248,6 +248,7 @@
 
             </Grid>
             <ListBox Grid.Row="1"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      SelectedItem="{Binding SelectedTrack, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      ItemTemplate="{StaticResource TrackTemplate}"
                      ItemsSource="{Binding AllTracks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

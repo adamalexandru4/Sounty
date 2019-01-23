@@ -133,6 +133,9 @@
     <Compile Include="DataAccess\Subscription.cs">
       <DependentUpon>SountyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\sysdiagram.cs">
+      <DependentUpon>SountyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Track.cs">
       <DependentUpon>SountyDB.tt</DependentUpon>
     </Compile>
@@ -455,22 +458,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataAccess\SountyDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SountyDB.edmx</DependentUpon>
-      <LastGenOutput>SountyDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccess\SountyDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SountyDB.edmx</DependentUpon>
-      <LastGenOutput>SountyDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\wave.gif" />
     <Resource Include="Resources\Images\wave2.gif" />
-    <Resource Include="Resources\Albums\RINGOS DESERT.jpg" />
-    <Resource Include="Resources\Artists\ZHU.jpg" />
     <Resource Include="Resources\Controls\equalizer.png" />
     <Resource Include="Resources\Controls\left.png" />
     <Resource Include="Resources\Controls\menu.png" />
@@ -536,6 +525,22 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataAccess\SountyDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+      <LastGenOutput>SountyDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\SountyDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SountyDB.edmx</DependentUpon>
+      <LastGenOutput>SountyDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Albums\" />
+    <Folder Include="Resources\Artists\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -55,6 +55,7 @@
                   X1="0" Y1="0" X2="1200" Y2="0"/>
         </Grid>
         <ListBox Grid.Row       ="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                  SelectedItem   ="{Binding SelectedSong}"
                  ItemsSource    ="{Binding Songs}"/>
     </Grid>

@@ -263,9 +263,9 @@ VALUES (1, '2019-01-15', 'Holy Ship, Miami'),
 SET IDENTITY_INSERT Playlist OFF
 GO
 
-INSERT INTO Playlist (playlistName, createdDate, updatedDate, userId)
-VALUES ('Car ride', GETDATE(), GETDATE(), 1),
-	('Rock', GETDATE(), GETDATE(), 2)
+INSERT INTO Playlist (playlistName, createdDate, updatedDate, userId, imageId)
+VALUES ('Car Ride', GETDATE(), GETDATE(), 1, 29),
+	   ('Rock', GETDATE(), GETDATE(), 2, 49)
 
 /*
 	Albums
@@ -291,13 +291,6 @@ VALUES ('Ringos Desert', 2, 1, 1),
 
 SET IDENTITY_INSERT Track OFF
 
-INSERT INTO Track (filepath, imageId)
-VALUES ('D:\GitLab Tracks\G4SHI - 24 Hours.mp3', 1),
-	('D:\GitLab Tracks\GAULLIN - All The Things.mp3', 2),
-	('D:\GitLab Tracks\Gaullin - LET ME SHOW YOU.mp3', 3),
-	('D:\GitLab Tracks\Hotway & Diskover - Be Famous.mp3', 4),
-	('D:\GitLab Tracks\Kaan Pars & Yusuf Alev - Heroine.mp3', 5)
-
 INSERT INTO Track(albumId, nameTrack, filepath)
 VALUES (1, 'ZHU - Burn Babylon Ft. Keznamdi & Daniel Wilson', 'D:\GitLab Tracks\ZHU\ZHU - Burn Babylon Ft. Keznamdi & Daniel Wilson.mp3'),
 		(1, 'ZHU - Coming Home (feat. Majid Jordan)', 'D:\GitLab Tracks\ZHU\ZHU - Coming Home (feat. Majid Jordan).mp3'),
@@ -306,7 +299,7 @@ VALUES (1, 'ZHU - Burn Babylon Ft. Keznamdi & Daniel Wilson', 'D:\GitLab Tracks\
 		(1, 'ZHU - Ghost In My Bed', 'D:\GitLab Tracks\ZHU\ZHU - Ghost In My Bed.mp3'),
 		(1, 'ZHU - Guilty Love', 'D:\GitLab Tracks\ZHU\ZHU - Guilty Love.mp3'),
 		(1, 'ZHU - Light It Up (feat. TOKiMONSTA)', 'D:\GitLab Tracks\ZHU\ZHU - Light It Up (feat. TOKiMONSTA).mp3'),
-		(1, 'ZHU - Love That Hurts (feat. Karnaval Blues & Indiana)', 'D:\GitLab Tracks\ZHU\ZHU - Love That Hurts (feat. Karnaval Blues & Indiana).mp3'),
+		(1, 'ZHU - Love That Hurts', 'D:\GitLab Tracks\ZHU\ZHU - Love That Hurts (feat. Karnaval Blues & Indiana).mp3'),
 		(1, 'ZHU - Save Me', 'D:\GitLab Tracks\ZHU\ZHU - Save Me.mp3'),
 		(1, 'ZHU - Stormy Love', 'D:\GitLab Tracks\ZHU\ZHU - Stormy Love.mp3'),
 		(1, 'ZHU - Waters of Monaco', 'D:\GitLab Tracks\ZHU\ZHU - Waters of Monaco.mp3'),
@@ -424,6 +417,23 @@ VALUES (10, 'Miguel - Anointed', 'D:\GitLab Tracks\Miguel\Miguel - Anointed.mp3'
 		(10, 'Miguel - Remind Me to Forget', 'D:\GitLab Tracks\Miguel\Miguel - Remind Me to Forget.mp3'),
 		(10, 'Miguel - Told You So', 'D:\GitLab Tracks\Miguel\Miguel - Told You So.mp3')
 
+
+/*
+	TrackArtists
+*/
+
+insert into TrackArtists(trackId, artistId)
+values (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (11, 1), (12, 1),
+	   (13, 4), (14, 4), (15, 4), (16, 4), (17, 4), (18, 4), (19, 4), (20, 4), (21, 4),
+	   (22, 10), (23, 10), (24, 10), (25, 10), (26, 10), (27, 10), (28, 10), (29, 10),
+	   (30, 2), (31, 2), (32, 2), (33, 2), (34, 2), (35, 2), (36, 2), (37, 2), (38, 2), (39, 2), (40, 2), (41, 2), (42, 2), (43, 2), (44, 2), (45, 2), (46, 2), (47, 2),
+	   (48, 5), (49, 5), (50, 5), (51, 5), (52, 5), (53, 5), (54, 5), (55, 5),
+	   (56, 9), (57, 9), (58, 9), (59, 9), (60, 9),
+	   (61, 7), (62, 7), (63, 7), (64, 7), (65, 7), (66, 7), (67, 7), (68, 7), (69, 7), (70, 7), (71, 7), (72, 7),
+	   (73, 6), (74, 6), (75, 6), (76, 6), (77, 6), (78, 6), (79, 6), (80, 6), (81, 6), (82, 6), (83, 6),
+	   (84, 8), (85, 8), (86, 8), (87, 8), (88, 8), (89, 8), (90, 8), (91, 8), (92, 8), (93, 8),
+	   (94, 3), (95, 3), (96, 3), (97, 3), (98, 3), (99, 3), (100, 3), (101, 3), (102, 3), (103, 3), (104, 3)
+
 /*
 	PlaylistGenres
 */
@@ -431,25 +441,13 @@ VALUES (10, 'Miguel - Anointed', 'D:\GitLab Tracks\Miguel\Miguel - Anointed.mp3'
 SET IDENTITY_INSERT PlaylistsGenresTracks OFF
 
 INSERT INTO PlaylistsGenresTracks(playlistId, trackId)
-VALUES (1, 27), (1, 28), (1, 29), (1, 30), (1, 31), (1, 32), (1, 33), (1, 34), (1, 61), (1, 62), (1, 63), (1, 64), (1, 65),
-	(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (2, 17),
-	(3, 66), (3, 67), (3, 68), (3, 69), (3, 70), (3, 71), (3, 72), (3, 73), (3, 74), (3,75), (3, 76), (3, 77),
-	(4, 89), (4, 90), (4, 91), (4, 92), (4, 93), (4, 94), (4, 95), (4, 96), (4, 97), (4, 98),
-	(5, 18), (5, 19), (5, 20), (5, 21), (5, 22), (5, 23), (5, 24), (5, 25), (5, 26), (5, 99), (5, 100), (5, 101), (5, 102), (5, 103), (5, 104), (5, 105), (5, 106), (5, 107), (5, 108), (5, 109),
-	(6, 53), (6, 54), (6, 55), (6, 56), (6, 57), (6, 58), (5, 59), (6, 60),
-	(7, 35), (7, 36), (7, 37), (7, 38), (7, 39), (7, 40), (7, 41), (7, 42), (7, 43), (7, 44), (7, 45), (7, 46), (7, 47), (7, 48), (7, 49), (7, 50), (7, 51), (7,52)
-/*
-	Tracks genres
-*/
-
-SET IDENTITY_INSERT TracksGenres OFF
-
-INSERT INTO TracksGenres(trackId, genreId)
-VALUES (1, 2)
-
- INSERT INTO TracksGenres(trackId, genreId)
-VALUES (2, 2), (3, 2), (4, 2), (5, 2)
-
+VALUES (1, 22), (1, 23), (1, 24), (1, 25), (1, 26), (1, 27), (1, 28), (1, 29), (1, 56), (1, 57), (1, 58), (1, 59), (1, 60),
+	(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (2, 12),
+	(3, 61), (3, 62), (3, 63), (3, 64), (3, 65), (3, 66), (3, 67), (3, 68), (3, 69), (3,70), (3, 71), (3, 72),
+	(4, 84), (4, 85), (4, 86), (4, 87), (4, 88), (4, 89), (4, 90), (4, 91), (4, 92), (4, 93),
+	(5, 13), (5, 14), (5, 15), (5, 16), (5, 17), (5, 18), (5, 19), (5, 20), (5, 21), (5, 94), (5, 95), (5, 96), (5, 97), (5, 98), (5, 99), (5, 100), (5, 101), (5, 102), (5, 103), (5, 104),
+	(6, 48), (6, 49), (6, 50), (6, 51), (6, 52), (6, 53), (5, 54), (6, 55),
+	(7, 30), (7, 31), (7, 32), (7, 33), (7, 34), (7, 35), (7, 36), (7, 37), (7, 38), (7, 39), (7, 40), (7, 41), (7, 42), (7, 43), (7, 44), (7, 45), (7, 46), (7, 47)
 
 /*
 	Tracks of playlists
@@ -458,7 +456,7 @@ VALUES (2, 2), (3, 2), (4, 2), (5, 2)
 SET IDENTITY_INSERT PlaylistTracks OFF
 
 INSERT INTO PlaylistTracks (playlistId, trackId)
-VALUES (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 10), (1, 12), (1, 13), (1, 20), (1, 25)
+VALUES (1, 10), (1, 12), (1, 13), (1, 20), (1, 25)
 
 
 INSERT INTO PlaylistTracks (playlistId, trackId)
