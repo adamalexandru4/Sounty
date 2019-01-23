@@ -325,6 +325,10 @@ GO
 			UPDATE Track
 			SET imageId = (SELECT imageID FROM Images WHERE imageName = nameTrack)
 			WHERE imageId IS NULL;
+
+			UPDATE Track
+			SET imageId = CAST(ABS(CHECKSUM(NewId())) as int)%58+29
+			WHERE ImageId IS NULL
 		END
 
 

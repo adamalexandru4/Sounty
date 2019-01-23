@@ -257,8 +257,6 @@ VALUES (1, '2019-01-15', 'Holy Ship, Miami'),
 /*
 	Playlists
 */
-select * from Playlist
-
 SET IDENTITY_INSERT Playlist OFF
 GO
 
