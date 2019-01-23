@@ -43,11 +43,18 @@ namespace Sounty.ViewModel
         public static EditUserViewModel CreateWithParameters(DataAccess.UserInfo userInfo, DataAccess.UserSounty userSounty)
         {
             Instance.HelloName = userInfo.firstName;
-
             Instance.UserPage = new EditUserFirstPageViewModel();
 
             return instance;
-       }
+        }
+
+        public static EditUserViewModel CreateWithParametersFriends(DataAccess.UserInfo userInfo, DataAccess.UserSounty userSounty)
+        {
+            Instance.HelloName = userInfo.firstName;
+            Instance.UserPage = new UserFriendsViewModel();
+
+            return instance;
+        }
 
         EditUserViewModel()
         {

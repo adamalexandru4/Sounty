@@ -3,19 +3,131 @@
              xmlns:x    ="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc   ="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d    ="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vw   ="clr-namespace:Sounty.View"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        
+        <Style x:Key="BackgroundBorder" TargetType="Border">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="Black" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="3"
+                                  ShadowDepth="0"
+                                  Color="Black"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="ConcertTemplate">
+            <vw:ConcertsView/>
+        </DataTemplate>
+
+        <Style x:Key="{x:Type ListBox}" TargetType="ListBox">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+            <Setter Property="ItemTemplate" Value="{StaticResource ConcertTemplate}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <Border Name="Border" BorderThickness="1" CornerRadius="2">
+                            <Border.Background>
+                                <SolidColorBrush Color="Transparent"/>
+                            </Border.Background>
+                            <ScrollViewer Margin="0" Focusable="false">
+                                <StackPanel Margin="2" IsItemsHost="True" />
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <Style TargetType="ListBoxItem" x:Key="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Margin" Value="20 2 0 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border BorderThickness ="0"
+                                BorderBrush     ="Transparent"
+                                Background      ="Transparent">
+                            <Border BorderBrush="Transparent">
+                                <Border.Background>
+                                    <SolidColorBrush x:Name="BorderGrid" Color="Gray" Opacity="0"/>
+                                </Border.Background>
+                                <Border Background="Transparent">
+                                    <ContentPresenter/>
+                                </Border>
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            From="0" To="0.4"
+                                                            Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            From="0" To="0.6"
+                                                            Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    
     <Grid>
-        <Border x:Name          ="Border"
-                Margin          ="25"
-                BorderThickness ="0"
-                BorderBrush     ="Transparent"
-                Background      ="LightGray"
-                CornerRadius    ="10"
-                Padding         ="20">
-            <TextBlock FontSize     ="14"
-                       FontWeight   ="DemiBold"
-                       Foreground   ="Black"
-                       Text         ="{Binding Biography}"/>
+        <Border Style="{StaticResource BackgroundBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <ListBox ItemTemplate="{StaticResource ConcertTemplate}" Grid.Row="0"
+                        ItemsSource="{Binding ConcertsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <TextBlock x:Name="subHeaderText" 
+                   FontSize="20" 
+                   TextWrapping="Wrap" 
+                   Foreground="Black"
+                   Text ="{Binding Biography}" />
+                </StackPanel>
+
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

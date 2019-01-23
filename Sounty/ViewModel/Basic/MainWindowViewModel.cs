@@ -64,6 +64,7 @@ namespace Sounty.ViewModel
         public static void FillUserInfo(int userId)
         {
             Instance.UserInfo = UserRightSideViewModel.FillViewModel(userId);
+            Instance.Menu = MenuViewModel.Instance;
             Instance.imageModel = new ImagesModel();
         }
 
@@ -89,7 +90,6 @@ namespace Sounty.ViewModel
 
         private MainWindowViewModel()
         {
-            Menu        = MenuViewModel.Instance;
             Player      = PlayerViewModel.Instance;
             Workspace   = new HomeViewModel();
 

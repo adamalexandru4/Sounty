@@ -140,12 +140,12 @@ namespace Sounty.ViewModel
                 context.SaveChanges();
 
                 // RESET EVERYTHING
+                ApplicationViewModel.Instance.MainPage = HomeLoginViewModel.Instance;
+
                 UserRightSideViewModel.Reset();
                 ChangePasswordViewModel.Reset();
                 EditUserViewModel.Reset();
                 MainWindowViewModel.Reset();
-
-                ApplicationViewModel.Instance.MainPage = HomeLoginViewModel.Instance;
             }
         }
         #endregion

@@ -42,7 +42,6 @@ namespace Sounty.ViewModel
         public RelayCommand PlayCMD     { get; }
         public RelayCommand SongsCMD    { get; }
         public RelayCommand AboutCMD    { get; }
-        public RelayCommand ConcertsCMD { get; }
 
         #endregion
 
@@ -53,15 +52,13 @@ namespace Sounty.ViewModel
             Load_ArtistData(artistId);
 
             songs       = new SongsViewModel(artistId);
-            about       = new AboutViewModel(biography);
-            concerts    = new ConcertsViewModel();
+            about       = new AboutViewModel(biography, artistId);
 
             CurrentPage = songs;
 
             PlayCMD     = new RelayCommand(param => Play());
             SongsCMD    = new RelayCommand(param => SwitchToSongs());
             AboutCMD    = new RelayCommand(param => SwitchToAbout());
-            ConcertsCMD = new RelayCommand(param => SwitchToConcerts());
         }
 
         #endregion
@@ -104,8 +101,6 @@ namespace Sounty.ViewModel
         private void SwitchToSongs() => CurrentPage = songs;
 
         private void SwitchToAbout() => CurrentPage = about;
-
-        private void SwitchToConcerts() => CurrentPage = concerts;
 
         #endregion
     }

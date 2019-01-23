@@ -130,8 +130,6 @@ VALUES ('Alexandru Adam', 'D:\Sounty\Sounty\Resources\Profile\Alexandru Adam.jpg
 		('Alexandru Chirita', 'D:\Sounty\Sounty\Resources\Profile\Alexandru Chirita.jpg'),
 		('Octavian Petre', 'D:\Sounty\Sounty\Resources\Profile\Octavian Petre.jpg')
 
-
-
 /*
 	Genre
 */
@@ -259,13 +257,14 @@ VALUES (1, '2019-01-15', 'Holy Ship, Miami'),
 /*
 	Playlists
 */
+select * from Playlist
 
 SET IDENTITY_INSERT Playlist OFF
 GO
 
-INSERT INTO Playlist (playlistName, createdDate, updatedDate, userId, imageId)
-VALUES ('Car Ride', GETDATE(), GETDATE(), 1, 29),
-	   ('Rock', GETDATE(), GETDATE(), 2, 49)
+INSERT INTO Playlist (playlistName, createdDate, updatedDate, userId)
+VALUES ('Car Ride', GETDATE(), GETDATE(), 1),
+	   ('Rock', GETDATE(), GETDATE(), 2)
 
 /*
 	Albums
@@ -422,8 +421,10 @@ VALUES (10, 'Miguel - Anointed', 'D:\GitLab Tracks\Miguel\Miguel - Anointed.mp3'
 	TrackArtists
 */
 
-insert into TrackArtists(trackId, artistId)
-values (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (11, 1), (12, 1),
+SET IDENTITY_INSERT TrackArtists OFF
+
+INSERT into TrackArtists(trackId, artistId)
+values (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1),
 	   (13, 4), (14, 4), (15, 4), (16, 4), (17, 4), (18, 4), (19, 4), (20, 4), (21, 4),
 	   (22, 10), (23, 10), (24, 10), (25, 10), (26, 10), (27, 10), (28, 10), (29, 10),
 	   (30, 2), (31, 2), (32, 2), (33, 2), (34, 2), (35, 2), (36, 2), (37, 2), (38, 2), (39, 2), (40, 2), (41, 2), (42, 2), (43, 2), (44, 2), (45, 2), (46, 2), (47, 2),

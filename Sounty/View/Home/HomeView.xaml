@@ -130,8 +130,10 @@
         </Grid.RowDefinitions>
         <Border Grid.Row        ="0"
                 BorderThickness ="0"
-                BorderBrush     ="Transparent"
-                Background      ="{StaticResource LinearGradientBW}">
+                BorderBrush     ="Transparent">
+            <Border.Background>
+                <ImageBrush ImageSource="/Resources/Images/HomeScreen.jpg" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Stretch="UniformToFill"/>
+            </Border.Background>
             <TextBlock Margin               ="25"
                        VerticalAlignment    ="Bottom"
                        HorizontalAlignment  ="Left"
