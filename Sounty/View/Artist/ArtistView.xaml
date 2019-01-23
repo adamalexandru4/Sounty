@@ -124,12 +124,10 @@
         
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <Button Command ="{Binding SongsCMD}"
-                    Margin  ="20,0,0,0"
+                    Margin  ="35,0,0,0"
                     Content ="SONGS"/>
             <Button Command ="{Binding AboutCMD}"
                     Content ="ABOUT"/>
-            <Button Command ="{Binding ConcertsCMD}"
-                    Content ="CONCERTS"/>
         </StackPanel>
 
         <ContentControl Grid.Row="5" Content="{Binding CurrentPage}"/>

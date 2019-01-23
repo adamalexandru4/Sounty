@@ -70,6 +70,7 @@ namespace Sounty.ViewModel
         RelayCommand searchCommand;
         RelayCommand playPlaylist;
         RelayCommand editPlaylistInfo;
+        RelayCommand deletePlaylistCommand;
 
         #endregion
 
@@ -126,7 +127,7 @@ namespace Sounty.ViewModel
 
                 };
             }
-            else
+            else if (playlistModel.ImagesCoverId.Count < 4 && playlistModel.ImagesCoverId.Count > 0)
             {
                 FourCoverPhotosVisibility = false;
                 OneCoverPhotoVisibility = true;
@@ -136,6 +137,17 @@ namespace Sounty.ViewModel
                 {
                     FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[0]),
                 };
+            }
+            else
+            {
+                OneCoverPhotoVisibility = true;
+                FourCoverPhotosVisibility = false;
+
+                PlaylistCoverImages =
+               new PlaylistCoverImage
+               {
+                   FirstImage = @"/Resources/Images/NoImage.png",
+               };
             }
 
         }
@@ -202,9 +214,8 @@ namespace Sounty.ViewModel
 
         #endregion
 
-        /// <summary>
-        /// Returns a collection of all tracks from PlaylistViewModel objects
-        /// </summary>
+        public ObservableCollection<TrackOfPlaylistViewModel> PlaylistTracksCopy;
+
         private ObservableCollection<TrackOfPlaylistViewModel> allTracks = new ObservableCollection<TrackOfPlaylistViewModel>();
         public ObservableCollection<TrackOfPlaylistViewModel> AllTracks
         {
@@ -370,20 +381,32 @@ namespace Sounty.ViewModel
         {
             if (String.IsNullOrEmpty(SearchText) || SearchText.Count() < 1)
             {
-                ErrorSearchingVisibility = true;
+                if(AllTracks != PlaylistTracksCopy && AllTracks != null)
+                    AllTracks = PlaylistTracksCopy;
                 return;
             }
 
-            foreach (var track in AllTracks)
+            else
             {
-                if (track.TrackName.Contains(SearchText))
+                if (AllTracks.Any(track => track.TrackName.Contains(SearchText) || track.Artist.Contains(SearchText) || track.Album.Contains(SearchText)))
                 {
                     ErrorSearchingVisibility = false;
-                    return;
+
+                    PlaylistTracksCopy = new ObservableCollection<TrackOfPlaylistViewModel>(AllTracks);
+                    AllTracks.Clear();
+
+                    foreach (var track in PlaylistTracksCopy)
+                    {
+                        if(track.TrackName.Contains(SearchText) || track.Artist.Contains(SearchText) || track.Album.Contains(SearchText))
+                            AllTracks.Add(track);
+                    }
+                }
+                else
+                {
+                    ErrorSearchingVisibility = true;
                 }
             }
-
-            ErrorSearchingVisibility = true;
+            
         }
 
         public ICommand PlayPlaylist
@@ -430,6 +453,43 @@ namespace Sounty.ViewModel
                 {
                     // If cancel is pressed
                 }
+            }
+        }
+
+        public ICommand DeletePlaylistCommand
+        {
+            get
+            {
+                if(deletePlaylistCommand == null)
+                    deletePlaylistCommand = new RelayCommand(t => this.DeletePlaylist());
+                
+                return deletePlaylistCommand;
+            }
+        }
+
+        void DeletePlaylist()
+        {
+            try
+            {
+                MainWindowViewModel.Instance.Workspace = new HomeViewModel();
+
+                MenuViewModel.Instance.PlaylistsList.Remove(MenuViewModel.Instance.SelectedPlaylist);
+                MenuViewModel.Instance.SelectedPlaylist = null;
+
+                using (var context = new DataAccess.SountyDB())
+                {
+                    var playlistToRemove = (from playlist in context.Playlists
+                                            where playlist.playlistId == this.playlistModel.PlaylistId
+                                            select playlist).Single();
+
+                    context.Playlists.Remove(playlistToRemove);
+                    context.SaveChanges();
+                }
+
+            }
+            catch (Exception e)
+            {
+                return;
             }
         }
 

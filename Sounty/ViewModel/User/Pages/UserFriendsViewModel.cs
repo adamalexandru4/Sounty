@@ -26,6 +26,8 @@ namespace Sounty.ViewModel
 
         #region Bindings
 
+        public ObservableCollection<FriendItemPageViewModel> AuxSearchUsers = new ObservableCollection<FriendItemPageViewModel>();
+
         private ObservableCollection<FriendItemPageViewModel> friends;
         public ObservableCollection<FriendItemPageViewModel> FriendsList
         {
@@ -164,10 +166,33 @@ namespace Sounty.ViewModel
         {
             if (String.IsNullOrEmpty(SearchText) || SearchText.Count() < 1)
             {
-                ErrorSearchingVisibility = true;
+                if (AuxSearchUsers != SearchFriends)
+                    SearchFriends = AuxSearchUsers;
                 return;
             }
-            else ErrorSearchingVisibility = false;
+            else
+            {
+                var itemsFound = SearchFriends.Where(p => p.FirstName.Contains(SearchText) ||
+                                           p.LastName.Contains(SearchText) ||
+                                           p.UserName.Contains(SearchText));
+
+                if (itemsFound.Count() != 0)
+                {
+                    AuxSearchUsers = FriendsList;
+                    SearchFriends = new ObservableCollection<FriendItemPageViewModel>();
+                }
+                else
+                {
+                    ErrorSearchingVisibility = true;
+                    return;
+                }
+
+                foreach(var item in itemsFound)
+                {
+                    SearchFriends.Add(item);
+                }
+                ErrorSearchingVisibility = false;
+            }
             
         }
     

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Sounty.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -57,7 +58,7 @@
                VerticalAlignment="Bottom"
                     gif:ImageBehavior.AnimatedSource="/Resources/Images/wave2.gif" 
                    RenderOptions.BitmapScalingMode="HighQuality"/>
-        
+
         <Border Grid.Row="1" Style="{StaticResource BackgroundBorder}">
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -83,10 +84,8 @@
                             Command="{Binding FriendsCommand}"/>
                 </StackPanel>
 
-                <ContentControl Grid.Column="1" Content="{Binding UserPage}" />
+                <Controls:TransitioningContentControl Grid.Column="1" Content="{Binding UserPage}" Transition="LeftReplace" />
             </Grid>
-
         </Border>
-
     </Grid>
 </UserControl>

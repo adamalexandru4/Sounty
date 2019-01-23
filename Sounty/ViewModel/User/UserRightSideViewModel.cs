@@ -51,7 +51,7 @@ namespace Sounty.ViewModel
         RelayCommand facebookCommand;
         RelayCommand instagramCommand;
         RelayCommand youtubeCommand;
-
+        RelayCommand addFriendCommand;
         RelayCommand editProfileCommand;
 
         private ObservableCollection<FriendListItem> friends;
@@ -338,8 +338,25 @@ namespace Sounty.ViewModel
         void EditProfile()
         {
             MainWindowViewModel.Instance.Workspace = EditUserViewModel.CreateWithParameters(userInfo, userSounty);
+            MenuViewModel.Instance.SelectedPlaylist = null;
         }
 
+        public ICommand AddFriendCommand
+        {
+            get
+            {
+                if (addFriendCommand == null)
+                    addFriendCommand = new RelayCommand(t => this.AddFriend());
+
+                return addFriendCommand;
+            }
+        }
+
+        void AddFriend()
+        {
+            MenuViewModel.Instance.SelectedPlaylist = null;
+            MainWindowViewModel.Instance.Workspace = EditUserViewModel.CreateWithParametersFriends(userInfo, userSounty);
+        }
         #endregion
 
     }

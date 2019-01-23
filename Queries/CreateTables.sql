@@ -299,8 +299,6 @@ GO
 		*/
 /* ************************ */
 
-IF OBJECT_ID('tr_FindIdUserImage', 'TR') IS NOT NULL
-	DROP TRIGGER tr_FindIdUserImage
 GO
 	CREATE TRIGGER tr_FindIdUserImage
 		ON UserInfo
@@ -314,8 +312,6 @@ GO
 		END
 		
 
-IF OBJECT_ID('tr_FindIdTrackImage', 'TR') IS NOT NULL
-	DROP TRIGGER tr_FindIdTrackImage
 GO
 	CREATE TRIGGER tr_FindIdTrackImage
 		ON Track
@@ -329,18 +325,9 @@ GO
 			UPDATE Track
 			SET imageId = (SELECT imageID FROM Images WHERE imageName = nameTrack)
 			WHERE imageId IS NULL;
-
-			WITH CTE AS(
-			SELECT t.trackId, t.albumId, t.nameTrack, t.filepath, t.imageId,
-				   RN = ROW_NUMBER() OVER(PARTITION BY t.nameTrack ORDER BY t.nameTrack)
-			   FROM Track as t
-			)
-			DELETE FROM CTE WHERE RN > 1
 		END
 
 
-IF OBJECT_ID('tr_FindIdArtistImage', 'TR') IS NOT NULL
-	DROP TRIGGER tr_FindIdArtistImage
 GO
 	CREATE TRIGGER tr_FindIdArtistImage
 		ON Artist
@@ -355,8 +342,6 @@ GO
 
 /***** FILL THE GENRE PLAYLIST *****/
 
-IF OBJECT_ID('tr_CreatePlaylists', 'TR') IS NOT NULL
-	DROP TRIGGER tr_CreatePlaylists
 GO
 	CREATE TRIGGER tr_CreatePlaylists
 		ON Genre

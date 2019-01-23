@@ -25,7 +25,7 @@ namespace Sounty.ViewModel
         int newCoverPhotoId;
 
         private string newCoverPath;
-
+        private bool createPlaylist;
         private PlaylistViewModel playlistViewModel;
 
         public PlaylistViewModel PlaylistViewModel
@@ -41,6 +41,15 @@ namespace Sounty.ViewModel
         #endregion
 
         #region Constructor
+
+        public EditPlaylistDialogViewModel()
+        {
+            PlaylistName        = "New playlist";
+            PlaylistDescription = String.Empty;
+            CoverPhotoPath      = NoImagePath;
+
+            createPlaylist      = true;
+        }
 
         public EditPlaylistDialogViewModel(PlaylistViewModel playlistViewModel)
         {
@@ -120,6 +129,12 @@ namespace Sounty.ViewModel
 
         void Save()
         {
+            if (createPlaylist == true)
+            {
+                CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(true));
+                return;
+            }
+
             string oldName = playlistViewModel.PlaylistName;
 
             playlistViewModel.PlaylistName  = newPlaylistName;

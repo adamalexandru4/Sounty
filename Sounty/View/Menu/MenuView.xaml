@@ -7,7 +7,63 @@
              Background     ="{StaticResource LinearGradientBW}">
 
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="CreatePlaylist">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Setter Property="Template">
+                
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness ="0"
+                                BorderBrush     ="Transparent"
+                                Background      ="Transparent">
+                            <Border CornerRadius="5" BorderThickness="2" BorderBrush="Transparent">
+                                <Border.Background>
+                                    <SolidColorBrush x:Name="BorderGrid" Color="OliveDrab" Opacity="0"/>
+                                </Border.Background>
+                                <Border Background="Transparent">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="7" ShadowDepth="0" Color="Black"/>
+                                    </Border.Effect>
+                                    <ContentPresenter/>
+                                </Border>
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            From="0" To="0.5"
+                                                            Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="BorderGrid"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            From="0" To="0.7"
+                                                            Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="MenuItemStyle">
             <Setter Property="MinHeight" Value="35"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -50,7 +106,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style TargetType="ListBoxItem">
             <Setter Property="MinHeight" Value="35" />
             <Setter Property="Template">
@@ -99,6 +155,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </UserControl.Resources>
 
     <Grid>
@@ -106,9 +163,10 @@
             <RowDefinition Height="140" />
             <RowDefinition Height="35"  />
             <RowDefinition Height="*"   />
+            <RowDefinition Height="45"  />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="0,10,0,0">
-            <Button Command="{Binding ShowHomePageCMD}">
+            <Button Command="{Binding ShowHomePageCMD}" Style="{StaticResource MenuItemStyle}">
                 <TextBlock Margin="25,0,0,0"
                            VerticalAlignment    ="Center"
                            HorizontalAlignment  ="Left"
@@ -117,7 +175,7 @@
                            Foreground           ="White"
                            Text                 ="Home"/>
             </Button>
-            <Button Command="{Binding ShowBrowsePageCMD}">
+            <Button Command="{Binding ShowBrowsePageCMD}" Style="{StaticResource MenuItemStyle}">
                 <TextBlock Margin="25,0,0,0"
                            VerticalAlignment    ="Center"
                            HorizontalAlignment  ="Left"
@@ -126,7 +184,7 @@
                            Foreground           ="White"
                            Text                 ="Browse"/>
             </Button>
-            <Button Command="{Binding ShowRadioPageCMD}">
+            <Button Command="{Binding ShowRadioPageCMD}" Style="{StaticResource MenuItemStyle}">
                 <TextBlock Margin="25,0,0,0"
                            VerticalAlignment    ="Center"
                            HorizontalAlignment  ="Left"
@@ -151,6 +209,17 @@
                  Background     ="Transparent"
                  SelectedItem   ="{Binding SelectedPlaylist}"
                  ItemsSource    ="{Binding PlaylistsList}"/>
+        <Button Grid.Row        ="3"
+                Style           ="{StaticResource CreatePlaylist}"
+                Command         ="{Binding CreatePlaylistCommand}">
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Resources/Images/Icons/AddIcon.png" RenderOptions.BitmapScalingMode="HighQuality"
+                        RenderOptions.EdgeMode="Aliased" Height="20" Width="20" VerticalAlignment="Center"/>
+                <TextBlock Text="CREATE PLAYLIST" Margin="5 0 0 0" VerticalAlignment="Center"
+                           FontSize="20" FontWeight="Light"/>
+            </StackPanel>
+        </Button>
     </Grid>
 
 </UserControl>

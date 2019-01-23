@@ -31,7 +31,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
@@ -72,8 +72,7 @@
                                         Mode=TwoWay,
                                         Converter={StaticResource BoolToVisibility},
                                         UpdateSourceTrigger=PropertyChanged}"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Height="300" Width="300"/>
+                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"/>
 
                         <Image Grid.Row="0" Grid.Column="0" 
                                 Source="{Binding PlaylistCoverImages.FirstImage, 
@@ -83,8 +82,7 @@
                                                     Mode=TwoWay,
                                                     Converter={StaticResource BoolToVisibility},
                                                     UpdateSourceTrigger=PropertyChanged}"
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                Height="200" Width="200"/>
+                                RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"/>
                         <Image Grid.Row="0" Grid.Column="1" 
                                 Source="{Binding PlaylistCoverImages.SecondImage, 
                                                 Mode=TwoWay,
@@ -93,8 +91,7 @@
                                                     Mode=TwoWay,
                                                     Converter={StaticResource BoolToVisibility},
                                                     UpdateSourceTrigger=PropertyChanged}"
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                Height="200" Width="200"/>
+                                RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"/>
                         <Image Grid.Row="1" Grid.Column="0" 
                                 Source="{Binding PlaylistCoverImages.ThirdImage, 
                                                 Mode=TwoWay,
@@ -103,7 +100,7 @@
                                                     Mode=TwoWay,
                                                     Converter={StaticResource BoolToVisibility},
                                                     UpdateSourceTrigger=PropertyChanged}"
-                               Height="200" Width="200"
+                               Stretch="UniformToFill"
                                RenderOptions.BitmapScalingMode="HighQuality"/>
                         <Image Grid.Row="1" Grid.Column="1" 
                                 Source="{Binding PlaylistCoverImages.FourthImage, 
@@ -113,7 +110,7 @@
                                                     Mode=TwoWay,
                                                     Converter={StaticResource BoolToVisibility},
                                                     UpdateSourceTrigger=PropertyChanged}"
-                               Height="200" Width="200" 
+                               Stretch="UniformToFill"
                                RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Grid>
                 </Border>
@@ -156,9 +153,9 @@
 
             </Grid>
 
-            <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Bottom" Margin="0 0 15 5">
-                <TextBlock HorizontalAlignment="Right" Text="FOLLOWERS" FontFamily="Montserrat" FontWeight="Light" FontSize="12" Foreground="DarkGray"/>
-                <TextBlock HorizontalAlignment="Right" Text="{Binding NumberOfFollowers}" FontFamily="Montserrat" FontWeight="Light" FontSize="12" Foreground="DarkGray"/>
+            <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Top" Margin="0 5 5 5">
+                <Button Style="{StaticResource RoundedButtonStyle}" Content="DELETE PLAYLIST" Background="Red"
+                            Command="{Binding DeletePlaylistCommand}" HorizontalAlignment="Right" Width="120"/>
             </StackPanel>
         </Grid>
 
@@ -192,28 +189,12 @@
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
                                         Converter={StaticResource BoolToVisibility}}"
-                            Text="Song not found!" Foreground="Red" Margin="10 0 0 0" VerticalAlignment="Center"
+                            Text="Sorry, nothing to show up!" Foreground="Red" Margin="10 0 0 0" VerticalAlignment="Center"
                            FontFamily="Montserrat" FontWeight="Light" FontSize="15"/>
 
             </DockPanel>
         </DockPanel>
 
-        <!--
-        <DataGrid Grid.Row="2"
-                  ItemsSource="{Binding Path=AllTracks}"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False"
-                  AutoGenerateColumns="False"
-                  IsSynchronizedWithCurrentItem="True"
-                  HorizontalGridLinesBrush="Black"
-                  ColumnWidth="200"
-                  ColumnHeaderStyle="{StaticResource HeaderDataGridStyle}"
-                  IsReadOnly="True">
-            
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Track name" Binding="{Binding TrackName}"/>
-            </DataGrid.Columns>
-        </DataGrid>-->
         <Grid Grid.Row="2">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">

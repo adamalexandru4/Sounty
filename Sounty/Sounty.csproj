@@ -133,9 +133,6 @@
     <Compile Include="DataAccess\Subscription.cs">
       <DependentUpon>SountyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\sysdiagram.cs">
-      <DependentUpon>SountyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\Track.cs">
       <DependentUpon>SountyDB.tt</DependentUpon>
     </Compile>
@@ -527,6 +524,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\Albums\" />
+    <Folder Include="Resources\Artists\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataAccess\SountyDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SountyDB.edmx</DependentUpon>
@@ -537,10 +538,15 @@
       <DependentUpon>SountyDB.edmx</DependentUpon>
       <LastGenOutput>SountyDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Albums\" />
-    <Folder Include="Resources\Artists\" />
+    <Resource Include="Resources\Images\HomeScreen.jpg" />
+    <Resource Include="Resources\Genres\Acoustic.jpg" />
+    <Resource Include="Resources\Genres\Classical.jpg" />
+    <Resource Include="Resources\Genres\Hip Hop.jpg" />
+    <Resource Include="Resources\Genres\House.jpg" />
+    <Resource Include="Resources\Genres\Jazz.jpg" />
+    <Resource Include="Resources\Genres\Pop.jpg" />
+    <Resource Include="Resources\Genres\Rock.jpg" />
+    <Resource Include="Resources\Images\Icons\AddIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

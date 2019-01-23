@@ -185,11 +185,10 @@
                                 Background          ="Transparent"
                                 Height              ="250"
                                 Width               ="245"
-                                
                                 Style="{StaticResource CoverButtonStyle}">
                             <Grid>
                                 <Image Source="{Binding CoverPhotoPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"
                                    Stretch="UniformToFill"
                                    Margin="0 40 50 40"/>
                             </Grid>
