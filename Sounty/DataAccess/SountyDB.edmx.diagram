@@ -19,6 +19,7 @@
         <EntityTypeShape EntityType="SountyModel.PlaylistTrack" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SountyModel.RatingsTrack" Width="1.5" PointX="12.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SountyModel.Subscription" Width="1.5" PointX="5.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SountyModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SountyModel.Track" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SountyModel.TrackArtist" Width="1.5" PointX="13.75" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SountyModel.TracksGenre" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />

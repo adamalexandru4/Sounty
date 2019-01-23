@@ -538,6 +538,7 @@
       <DependentUpon>SountyDB.edmx</DependentUpon>
       <LastGenOutput>SountyDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Controls\plus.png" />
     <Resource Include="Resources\Images\HomeScreen.jpg" />
     <Resource Include="Resources\Genres\Acoustic.jpg" />
     <Resource Include="Resources\Genres\Classical.jpg" />

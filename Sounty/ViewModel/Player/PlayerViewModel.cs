@@ -29,6 +29,19 @@ namespace Sounty.ViewModel
 
         #region Properties
 
+        public TrackOfPlaylistViewModel CrrtPlaying
+        {
+            get
+            {
+                return crrtPlaying;
+            }
+            set
+            {
+                crrtPlaying = value;
+                OnPropertyChanged("CrrtPlaying");
+            }
+        }
+
         private static PlayerViewModel instance;
         public  static PlayerViewModel Instance
         {
@@ -118,10 +131,10 @@ namespace Sounty.ViewModel
         {
             if (tracks.Count == 0) return;
 
-            crrtPlaying = tracks[0];
+            CrrtPlaying = tracks[0];
             nowPlaying  = tracks;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+            mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
             Play();
         }
 
@@ -129,19 +142,19 @@ namespace Sounty.ViewModel
         {
             if (repeatMode == RepeatMode.None)
             {
-                int crrtIndex = nowPlaying.IndexOf(crrtPlaying);
+                int crrtIndex = nowPlaying.IndexOf(CrrtPlaying);
                 if (crrtIndex == nowPlaying.Count - 1) return;
                 else
                 {
-                    crrtPlaying = nowPlaying[crrtIndex + 1];
+                    CrrtPlaying = nowPlaying[crrtIndex + 1];
                 }
-                mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+                mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
                 mediaPlayer.Play();
             }
             else
             if (repeatMode == RepeatMode.OneSong)
             {
-                mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+                mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
                 mediaPlayer.Play();
 
                 repeatMode = RepeatMode.None;
@@ -151,20 +164,20 @@ namespace Sounty.ViewModel
             {
                 if (wasRepeated)
                 {
-                    int crrtIndex = nowPlaying.IndexOf(crrtPlaying);
+                    int crrtIndex = nowPlaying.IndexOf(CrrtPlaying);
                     if (crrtIndex == nowPlaying.Count - 1) return;
                     else
                     {
-                        crrtPlaying = nowPlaying[crrtIndex + 1];
+                        CrrtPlaying = nowPlaying[crrtIndex + 1];
                     }
-                    mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+                    mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
                     mediaPlayer.Play();
 
                     wasRepeated = false;
                 }
                 else
                 {
-                    mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+                    mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
                     mediaPlayer.Play();
 
                     wasRepeated = true;
@@ -174,7 +187,7 @@ namespace Sounty.ViewModel
 
         private bool CanUsePlayer()
         {
-            if (crrtPlaying != null &&
+            if (CrrtPlaying != null &&
                 nowPlaying  != null &&
                 nowPlaying.Count != 0)
             {
@@ -208,29 +221,29 @@ namespace Sounty.ViewModel
 
         private void Previous()
         {
-            int crrtIndex = nowPlaying.IndexOf(crrtPlaying);
+            int crrtIndex = nowPlaying.IndexOf(CrrtPlaying);
 
-            if (crrtIndex == 0) crrtPlaying = nowPlaying[nowPlaying.Count - 1];
-            else                crrtPlaying = nowPlaying[crrtIndex - 1];
+            if (crrtIndex == 0) CrrtPlaying = nowPlaying[nowPlaying.Count - 1];
+            else                CrrtPlaying = nowPlaying[crrtIndex - 1];
 
             timer.Stop();
             Position = 0;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+            mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
             if (isPlaying) Play();
         }
 
         private void Next()
         {
-            int crrtIndex = nowPlaying.IndexOf(crrtPlaying);
+            int crrtIndex = nowPlaying.IndexOf(CrrtPlaying);
 
-            if (crrtIndex == nowPlaying.Count - 1) crrtPlaying = nowPlaying[0];
-            else                                   crrtPlaying = nowPlaying[crrtIndex + 1];
+            if (crrtIndex == nowPlaying.Count - 1) CrrtPlaying = nowPlaying[0];
+            else                                   CrrtPlaying = nowPlaying[crrtIndex + 1];
 
             timer.Stop();
             Position = 0;
 
-            mediaPlayer.Open(new Uri(crrtPlaying.FilePath));
+            mediaPlayer.Open(new Uri(CrrtPlaying.FilePath));
             if (isPlaying) Play();
         }
 
@@ -303,7 +316,7 @@ namespace Sounty.ViewModel
         {
             if (ApplicationViewModel.Instance.MainPage is HomeLoginViewModel)
             {
-                crrtPlaying = null;
+                CrrtPlaying = null;
                 nowPlaying.Clear();
 
                 Stop();
