@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:local="clr-namespace:Sounty.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -43,25 +44,49 @@
                                           Color="Black" Opacity="1"/>
                     </Rectangle.Effect>
                     <Rectangle.Fill>
-                        <ImageBrush ImageSource="/Resources/Images/NoProfileImage.png"/>
+                        <ImageBrush ImageSource="{Binding CoverImagePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Button Height="30" Width="100" Content="Edit profile" VerticalAlignment="Center"
-                        Margin="250 10 0 0" HorizontalAlignment="Left"
-                        Command="{Binding EditProfileCommand}"/>
-                <Button Height="30" Width="100" Content="Subscription" VerticalAlignment="Center"
-                        Margin="25 10 0 0" HorizontalAlignment="Left"
-                        Command="{Binding SubscriptionCommand}"/>
-                <Button Height="30" Width="100" Content="Friends" VerticalAlignment="Center"
-                        Margin="25 10 0 0" HorizontalAlignment="Left"
-                        Command="{Binding FriendsCommand}"/>
-            </StackPanel>
+            <TextBlock Margin="230 15 0 0" Grid.Row="1" FontFamily="Montserrat" FontSize="20" FontWeight="Light" 
+                    Text="{Binding Path=HelloName, StringFormat='Hello, {0}! What do you want to do here today?'}"/>
+            
         </Grid>
 
-        <ContentControl Grid.Row="1" Content="{Binding UserPage}" />
+        <Image HorizontalAlignment="Right" Margin="0 0 10 0" Height="100" Grid.Row="0" 
+               VerticalAlignment="Bottom"
+                    gif:ImageBehavior.AnimatedSource="/Resources/Images/wave2.gif" 
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+        
+        <Border Grid.Row="1" Style="{StaticResource BackgroundBorder}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 0 0 0">
+                    <Button Height="40" Width="120" Content="Account overview" 
+                            Margin="0 25 0 0" HorizontalAlignment="Center"
+                            Command="{Binding FirstPageCommand}"/>
+                    <Button Height="40" Width="120" Content="Edit profile" 
+                            Margin="0 15 0 0" HorizontalAlignment="Center"
+                            Command="{Binding EditProfileCommand}"/>
+                    <Button Height="40" Width="120" Content="Change password" 
+                            Margin="0 15 0 0" HorizontalAlignment="Center"
+                            Command="{Binding ChangePasswordCommand}"/>
+                    <Button Height="40" Width="120" Content="Subscription" 
+                            Margin="0 15 0 0" HorizontalAlignment="Center"
+                            Command="{Binding SubscriptionCommand}"/>
+                    <Button Height="40" Width="120" Content="Friends" 
+                            Margin="0 15 0 0" HorizontalAlignment="Center"
+                            Command="{Binding FriendsCommand}"/>
+                </StackPanel>
+
+                <ContentControl Grid.Column="1" Content="{Binding UserPage}" />
+            </Grid>
+
+        </Border>
 
     </Grid>
 </UserControl>

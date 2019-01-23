@@ -97,49 +97,47 @@ namespace Sounty.ViewModel
             }
         }
 
-        async void ShowCoverPhotos()
+        void ShowCoverPhotos()
         {
-            await Task.Run(() =>
+            if (playlistModel.ImageCoverId != 0)
             {
-                if (playlistModel.ImageCoverId != 0)
+                FourCoverPhotosVisibility = false;
+                OneCoverPhotoVisibility = true;
+
+                PlaylistCoverImages =
+                new PlaylistCoverImage
                 {
-                    FourCoverPhotosVisibility = false;
-                    OneCoverPhotoVisibility = true;
+                    FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImageCoverId),
+                };
 
-                    PlaylistCoverImages =
-                    new PlaylistCoverImage
-                    {
-                        FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImageCoverId),
-                    };
+            }
+            else if (playlistModel.ImagesCoverId.Count >= 4)
+            {
+                FourCoverPhotosVisibility = true;
+                OneCoverPhotoVisibility = false;
 
-                }
-                else if (playlistModel.ImagesCoverId.Count >= 4)
+                PlaylistCoverImages =
+                new PlaylistCoverImage
                 {
-                    FourCoverPhotosVisibility = true;
-                    OneCoverPhotoVisibility = false;
+                    FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[0]),
+                    SecondImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[1]),
+                    ThirdImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[2]),
+                    FourthImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[3])
 
-                    PlaylistCoverImages =
-                    new PlaylistCoverImage
-                    {
-                        FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[0]),
-                        SecondImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[1]),
-                        ThirdImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[2]),
-                        FourthImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[3])
+                };
+            }
+            else
+            {
+                FourCoverPhotosVisibility = false;
+                OneCoverPhotoVisibility = true;
 
-                    };
-                }
-                else
+                PlaylistCoverImages =
+                new PlaylistCoverImage
                 {
-                    FourCoverPhotosVisibility = false;
-                    OneCoverPhotoVisibility = true;
+                    FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[0]),
+                };
+            }
 
-                    PlaylistCoverImages =
-                    new PlaylistCoverImage
-                    {
-                        FirstImage = ImagesModel.Instance.GetImagePath(playlistModel.ImagesCoverId[0]),
-                    };
-                }
-            });
         }
 
         void ShowAllTracks(int playlistId)
@@ -158,14 +156,14 @@ namespace Sounty.ViewModel
                 foreach (var item in results)
                 {
                     var trackName = (from d in context.Tracks
-                                    where d.trackId == item.trackId
-                                    select new
-                                    {
-                                        d.trackId,
-                                        d.albumId,
-                                        d.filepath,
-                                        d.nameTrack
-                                    }).First();
+                                     where d.trackId == item.trackId
+                                     select new
+                                     {
+                                         d.trackId,
+                                         d.albumId,
+                                         d.filepath,
+                                         d.nameTrack
+                                     }).First();
 
                     var trackArtists = (from artists in context.TrackArtists
                                         where artists.trackId == trackName.trackId
@@ -173,7 +171,7 @@ namespace Sounty.ViewModel
 
                     string artistsNames = String.Empty;
 
-                    foreach(var artistId in trackArtists)
+                    foreach (var artistId in trackArtists)
                     {
                         var artistName = (from artistItem in context.Artists
                                           where artistItem.artistId == artistId

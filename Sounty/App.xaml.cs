@@ -24,6 +24,7 @@ namespace Sounty
 
             IDialogService dialogService = new DialogService(MainWindow);
             dialogService.Register<EditPlaylistDialogViewModel, EditPlaylistDialogView>();
+            dialogService.Register<PaySubscriptionDialogViewModel, PaySubscriptionView>();
 
             var viewModel = ApplicationViewModel.Instance;
             viewModel.dialogService = dialogService;

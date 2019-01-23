@@ -143,7 +143,7 @@ namespace Sounty.ViewModel
                 UserRightSideViewModel.Reset();
                 ChangePasswordViewModel.Reset();
                 EditUserViewModel.Reset();
-
+                MainWindowViewModel.Reset();
 
                 ApplicationViewModel.Instance.MainPage = HomeLoginViewModel.Instance;
             }

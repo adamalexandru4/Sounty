@@ -22,6 +22,14 @@
         <vw:SubscriptionView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:UserFriendsViewModel}">
+        <vw:UserFriendsView/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FriendTemplate">
+        <vw:FriendsListView/>
+    </DataTemplate>
+
     <Style x:Key="FlatBorder" TargetType="Border">
         <Setter Property="Background" Value="LightGray"/>
         <Setter Property="Opacity" Value="0.75"/>
@@ -216,5 +224,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
 </ResourceDictionary>

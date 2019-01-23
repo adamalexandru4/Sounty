@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Sounty.Model;
 
@@ -15,6 +14,31 @@ namespace Sounty.ViewModel
         const string defaultFacebookUrl = @"https://www.facebook.com";
         const string defaultInstagramUrl = @"https://www.instagram.com";
         const string defaultYoutubeUrl = @"https://www.youtube.com";
+
+        public string FacebookURL
+        {
+            get => userInfo.facebookPage;
+            set
+            {
+                userInfo.facebookPage = value;
+            }
+        }
+        public string InstagramURL
+        {
+            get => userInfo.instagramPage;
+            set
+            {
+                userInfo.instagramPage = value;
+            }
+        }
+        public string YoutubeURL
+        {
+            get => userInfo.youtubePage;
+            set
+            {
+                userInfo.youtubePage = value;
+            }
+        }
         
         private string  userProfileImagePath;
         private bool    notPremiumVisibility;
@@ -77,10 +101,8 @@ namespace Sounty.ViewModel
 
         UserRightSideViewModel()
         {
-
         }
         
-
         #endregion
 
         #region Private methods
@@ -105,14 +127,18 @@ namespace Sounty.ViewModel
                                               user.lastName,
                                               user.lastLogin,
                                               user.activeStatus,
-                                              user.profileImage
+                                              user.profileImage,
+                                              user.UserSounty.userName
                                           }).Single();
 
                         var item = new FriendListItem();
                         item.Name = friendInfo.firstName + " " + friendInfo.lastName;
                         item.CoverImage = ImagesModel.Instance.GetImagePath(friendInfo.profileImage ?? 0);
                         item.online = friendInfo.activeStatus ?? false;
-
+                        item.firstName = friendInfo.firstName;
+                        item.lastName = friendInfo.lastName;
+                        item.userName = friendInfo.userName;
+                       
                         // last login
                         DateTime lastLoginForFriend = friendInfo.lastLogin ?? DateTime.Now;
                         item.LastLogin = lastLoginForFriend != DateTime.Now ? (DateTime.Now - lastLoginForFriend).Minutes.ToString() + " minutes ago" : String.Empty;
@@ -157,13 +183,17 @@ namespace Sounty.ViewModel
                     }
 
                     if (userInfo.instagramPage == null)
-                        userInfo.instagramPage = defaultInstagramUrl;
-
+                    {
+                        InstagramURL = defaultInstagramUrl;
+                    }
                     if (userInfo.facebookPage == null)
-                        userInfo.facebookPage = defaultFacebookUrl;
-
+                    {
+                        FacebookURL = defaultFacebookUrl;
+                    }
                     if (userInfo.youtubePage == null)
-                        userInfo.youtubePage = defaultYoutubeUrl;
+                    {
+                        YoutubeURL = defaultYoutubeUrl;
+                    }
 
                     if (userInfo.subscriptionId != null)
                     {
@@ -185,8 +215,8 @@ namespace Sounty.ViewModel
                     }
                     else
                         NotPremiumVisibility = true;
-
-                    context.SaveChangesAsync();
+                    
+                    context.SaveChanges();
                 }
             }
             catch(Exception)
@@ -266,7 +296,7 @@ namespace Sounty.ViewModel
             get
             {
                 if(facebookCommand == null)
-                    facebookCommand = new RelayCommand(t => System.Diagnostics.Process.Start(userInfo.facebookPage));
+                    facebookCommand = new RelayCommand(t => System.Diagnostics.Process.Start(FacebookURL));
 
                 return facebookCommand;
             }
@@ -277,7 +307,7 @@ namespace Sounty.ViewModel
             get
             {
                 if (instagramCommand == null)
-                    instagramCommand = new RelayCommand(t => System.Diagnostics.Process.Start(userInfo.instagramPage));
+                    instagramCommand = new RelayCommand(t => System.Diagnostics.Process.Start(InstagramURL));
 
                 return instagramCommand;
             }
@@ -288,7 +318,7 @@ namespace Sounty.ViewModel
             get
             {
                 if (youtubeCommand == null)
-                    youtubeCommand = new RelayCommand(t => System.Diagnostics.Process.Start(userInfo.youtubePage));
+                    youtubeCommand = new RelayCommand(t => System.Diagnostics.Process.Start(YoutubeURL));
 
                 return youtubeCommand;
             }

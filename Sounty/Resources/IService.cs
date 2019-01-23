@@ -14,6 +14,7 @@ namespace Sounty
         bool ValidateName(string name, out ICollection<string> validationErrors);
         bool ValidatePhoneNumber(string phoneNumber, out ICollection<string> validationErrors);
         bool ValidateBirthdayDate(DateTime date, out ICollection<string> validationErrors);
+        bool ValidateUrl(string url, out ICollection<string> validationErrors);
     }
 
     public interface IServicePayment
@@ -187,6 +188,16 @@ namespace Sounty
             if (date.Year > 2001)
                 validationErrors.Add("You are too young");
 
+            return validationErrors.Count == 0;
+        }
+
+        public bool ValidateUrl(string url, out ICollection<string> validationErrors)
+        {
+            validationErrors = new List<string>();
+
+            if (!Regex.IsMatch(url, @"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$"))
+                validationErrors.Add("The URL isn't correct");
+            
             return validationErrors.Count == 0;
         }
     }

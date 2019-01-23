@@ -62,8 +62,8 @@ IF OBJECT_ID('Genre', 'U') IS NOT NULL
 
 CREATE TABLE Images(
 	imageId		int identity(1,1),
-	imageName	nvarchar(50),
-	imagePath	nvarchar(100),
+	imageName	nvarchar(150),
+	imagePath	nvarchar(150),
 
 	PRIMARY KEY (imageId)
 )
@@ -101,7 +101,7 @@ CREATE TABLE UserInfo(
 	instagramPage   nvarchar(50),
 	youtubePage		nvarchar(50),
 	birthDate		date,
-	lastLogin		date,
+	lastLogin		datetime,
 	activeStatus	bit,
 
 	PRIMARY KEY(userInfoId),
@@ -314,21 +314,6 @@ GO
 		END
 		
 
-
-IF OBJECT_ID('tr_FindIdAlbumImage', 'TR') IS NOT NULL
-	DROP TRIGGER tr_FindIdAlbumImage
-GO
-	CREATE TRIGGER tr_FindIdAlbumImage
-		ON Album
-		AFTER INSERT, UPDATE
-	AS
-		BEGIN
-			UPDATE Album
-			SET imageId = (SELECT imageID FROM Images WHERE imageName = albumName)
-			WHERE imageId IS NULL
-		
-		END
-
 IF OBJECT_ID('tr_FindIdTrackImage', 'TR') IS NOT NULL
 	DROP TRIGGER tr_FindIdTrackImage
 GO
@@ -337,9 +322,9 @@ GO
 		AFTER INSERT, UPDATE
 	AS
 		BEGIN
-			UPDATE t1
-			SET nameTrack = substring(t1.filepath, 18, LEN(t1.filepath) - 21)
-			FROM Track as t1
+			UPDATE Track
+			SET nameTrack = substring(Track.filepath, 18, LEN(Track.filepath) - 21)
+			WHERE nameTrack IS NULL
 
 			UPDATE Track
 			SET imageId = (SELECT imageID FROM Images WHERE imageName = nameTrack)
@@ -379,12 +364,15 @@ GO
 	AS
 		BEGIN
 			DECLARE @newName NVARCHAR(50)
+			DECLARE @imageId int
+
 			SET @newName = (SELECT TOP(1) nameGenre from Genre ORDER BY genreId DESC )
+			SET @imageId = (SELECT TOP(1) imageId from Images WHERE imageName = @newName)
 
 			SET IDENTITY_INSERT PlaylistsGenres OFF
 
-			INSERT INTO PlaylistsGenres (playlistName)
-			VALUES (@newName)
+			INSERT INTO PlaylistsGenres (playlistName, imageId)
+			VALUES (@newName, @imageId)
 
 		END
 

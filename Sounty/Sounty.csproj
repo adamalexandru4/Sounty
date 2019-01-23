@@ -67,6 +67,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.17\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -184,9 +187,11 @@
     <Compile Include="ViewModel\User\Pages\EditProfileViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\EditUserFirstPageViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\EditUserMainPageViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\Friends\FriendItemPageViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\PaySubscriptionDialogViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\SubscriptionItemViewModel.cs" />
     <Compile Include="ViewModel\User\Pages\SubscriptionViewModel.cs" />
+    <Compile Include="ViewModel\User\Pages\UserFriendsViewModel.cs" />
     <Compile Include="ViewModel\User\UserRightSideViewModel.cs" />
     <Compile Include="View\Artist\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -211,6 +216,9 @@
     </Compile>
     <Compile Include="View\EditUserMainPageView.xaml.cs">
       <DependentUpon>EditUserMainPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FriendItemPageView.xaml.cs">
+      <DependentUpon>FriendItemPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\HomeItemView.xaml.cs">
       <DependentUpon>HomeItemView.xaml</DependentUpon>
@@ -241,6 +249,9 @@
     </Compile>
     <Compile Include="View\Playlist\TrackItemView.xaml.cs">
       <DependentUpon>TrackItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\Pages\UserFriendsView.xaml.cs">
+      <DependentUpon>UserFriendsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\EditUserView.xaml.cs">
       <DependentUpon>EditUserView.xaml</DependentUpon>
@@ -279,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\FriendsPageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -290,6 +305,10 @@
     <Page Include="Resources\UserEditResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\UserRightSideResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utility\CommandControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +345,10 @@
     <Page Include="View\EditUserMainPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FriendItemPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Home\HomeItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -366,6 +389,10 @@
     <Page Include="View\Playlist\TrackItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\Pages\UserFriendsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\User\EditUserView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -430,10 +457,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Albums\RINGOS DESERT.jpg" />
-    <Resource Include="Resources\Artists\ZHU.jpg" />
+    <Resource Include="Resources\Images\wave.gif" />
+    <Resource Include="Resources\Images\wave2.gif" />
     <Resource Include="Resources\Controls\equalizer.png" />
     <Resource Include="Resources\Controls\left.png" />
     <Resource Include="Resources\Controls\menu.png" />
@@ -511,6 +537,10 @@
       <DependentUpon>SountyDB.edmx</DependentUpon>
       <LastGenOutput>SountyDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Albums\" />
+    <Folder Include="Resources\Artists\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

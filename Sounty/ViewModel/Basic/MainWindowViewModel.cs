@@ -92,10 +92,13 @@ namespace Sounty.ViewModel
             Menu        = MenuViewModel.Instance;
             Player      = PlayerViewModel.Instance;
             Workspace   = new HomeViewModel();
-            UserInfo    = UserRightSideViewModel.FillViewModel(1);
 
         }
 
+        public static void Reset()
+        {
+            Instance.Workspace = new HomeViewModel();
+        }
         #endregion
     }
 }

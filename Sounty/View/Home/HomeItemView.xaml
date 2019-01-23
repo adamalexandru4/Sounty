@@ -118,7 +118,8 @@
                     Command         ="{Binding OpenCMD}">
                 <Image Source="{Binding CoverPath}"
                        RenderOptions.BitmapScalingMode  ="HighQuality"
-                       RenderOptions.EdgeMode           ="Aliased"/>
+                       RenderOptions.EdgeMode           ="Aliased"
+                       Stretch                          ="UniformToFill"/>
             </Button>
         </Border>
 
