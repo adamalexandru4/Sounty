@@ -6,6 +6,40 @@
              xmlns:local="clr-namespace:Sounty.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness ="0"
+                                BorderBrush     ="Transparent"
+                                Background      ="Transparent">
+                            <Image Source="/Sounty;component/Resources/Controls/plus.png"
+                                   RenderOptions.BitmapScalingMode  ="HighQuality"
+                                   RenderOptions.EdgeMode           ="Aliased"/>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ThicknessAnimation
+                                                Storyboard.TargetProperty   ="BorderThickness"
+                                                To                          ="1.5"
+                                                Duration                    ="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,6 +56,17 @@
         <TextBlock Text="{Binding Album}" Foreground="White" 
                    Grid.Column="2"
                    Margin="50 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        
+        <Button Grid.Column         ="3"
+                Margin              ="0,0,15,0"
+                VerticalAlignment   ="Center"
+                HorizontalAlignment ="Right"
+                Height              ="20"
+                Width               ="20">
+            <Image Source="/Sounty;component/Resources/Controls/plus.png"
+                   RenderOptions.BitmapScalingMode  ="HighQuality"
+                   RenderOptions.EdgeMode           ="Aliased"/>
+        </Button>
 
     </Grid>
 </UserControl>

@@ -171,6 +171,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin"       Value="0,2.5"       />
+            <Setter Property="FontFamily"   Value="Montserrat"  />
+            <Setter Property="FontSize"     Value="12"          />
+            <Setter Property="FontWeight"   Value="DemiBold"    />
+            <Setter Property="Foreground"   Value="White"       />
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -179,10 +187,39 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.RowSpan    ="2"
+                    Grid.Column     ="0"
+                    Orientation     ="Horizontal">
+            <Border Margin              ="5"
+                    Height              ="75"
+                    Width               ="75"
+                    BorderThickness     ="0"
+                    BorderBrush         ="Transparent">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding CrrtPage.ImagePath}"
+                                RenderOptions.BitmapScalingMode ="HighQuality"
+                                RenderOptions.EdgeMode          ="Aliased"
+                                Stretch                         ="UniformToFill"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius    ="5"
+                                      ShadowDepth   ="0"
+                                      Color         ="Black"/>
+                </Border.Effect>
+            </Border>
+            <StackPanel Margin              ="10,5"
+                        VerticalAlignment   ="Center">
+                <TextBlock Text="{Binding CrrtPlaying.Artist}"   />
+                <TextBlock Text="{Binding CrrtPlaying.Album}"    />
+                <TextBlock Text="{Binding CrrtPlaying.TrackName}"/>
+            </StackPanel>
+        </StackPanel>
+
         <StackPanel Grid.Row            ="0"
                     Grid.Column         ="1"
                     HorizontalAlignment ="Center"
@@ -203,17 +240,15 @@
             <Button Content="{StaticResource Unmute}"   Command="{Binding UnmuteCMD}"   />
             <Button Content="{StaticResource Mute}"     Command="{Binding MuteCMD}"     />
         </StackPanel>
-        <StackPanel Grid.Row            ="1"
-                    Grid.Column         ="1"
-                    HorizontalAlignment ="Center"
-                    Orientation         ="Horizontal">
-            <Slider Width               ="380"
-                    Minimum             ="0"
-                    Maximum             ="1"
-                    Value               ="{Binding Position}"
-                    Thumb.DragStarted   ="SeekBarDragStarted"
-                    Thumb.DragCompleted ="SeerkBarDragCompleted"/>
-        </StackPanel>
+        
+        <Slider Grid.Row            ="1"
+                Grid.Column         ="1"
+                Width               ="380"
+                Minimum             ="0"
+                Maximum             ="1"
+                Value               ="{Binding Position}"
+                Thumb.DragStarted   ="SeekBarDragStarted"
+                Thumb.DragCompleted ="SeerkBarDragCompleted"/>
         <Slider Grid.Row            ="1"
                 Grid.Column         ="2"
                 HorizontalAlignment ="Right"
