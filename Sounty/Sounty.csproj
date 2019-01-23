@@ -541,6 +541,7 @@
       <DependentUpon>SountyDB.edmx</DependentUpon>
       <LastGenOutput>SountyDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Controls\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
