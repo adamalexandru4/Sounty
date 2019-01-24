@@ -178,7 +178,7 @@ namespace Sounty.ViewModel
 
                 if (itemsFound.Count() != 0)
                 {
-                    AuxSearchUsers = FriendsList;
+                    AuxSearchUsers = SearchFriends;
                     SearchFriends = new ObservableCollection<FriendItemPageViewModel>();
                 }
                 else

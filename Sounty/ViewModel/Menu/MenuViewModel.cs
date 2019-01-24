@@ -81,6 +81,11 @@ namespace Sounty.ViewModel
 
         #region Methods
 
+        public static void Reset()
+        {
+            instance = null;
+        }
+
         public void Load_PlaylistsList()
         {
             try

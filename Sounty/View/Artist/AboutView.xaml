@@ -6,6 +6,19 @@
              xmlns:vw   ="clr-namespace:Sounty.View"
              mc:Ignorable="d">
     <UserControl.Resources>
+
+
+        <Style x:Key="AboutBorder" TargetType="Border">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10"
+                                  ShadowDepth="0"
+                                  Color="LightGray"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
         <Style x:Key="BackgroundBorder" TargetType="Border">
             <Setter Property="Background">
@@ -23,6 +36,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
 
         <DataTemplate x:Key="ConcertTemplate">
             <vw:ConcertsView/>
@@ -105,7 +119,7 @@
         </Style>
 
     </UserControl.Resources>
-    
+
     <Grid>
         <Border Style="{StaticResource BackgroundBorder}">
             <Grid>
@@ -119,14 +133,15 @@
                         ItemsSource="{Binding ConcertsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
-                <StackPanel Orientation="Vertical" Grid.Column="1">
-                    <TextBlock x:Name="subHeaderText" 
-                   FontSize="20" 
-                   TextWrapping="Wrap" 
-                   Foreground="Black"
-                   Text ="{Binding Biography}" />
-                </StackPanel>
-
+                <Border Style="{StaticResource AboutBorder}" Grid.Column="1" Margin="10">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <TextBlock x:Name="subHeaderText" 
+                       FontSize="20" 
+                       TextWrapping="Wrap" 
+                       Foreground="Black"
+                       Text ="{Binding Biography}" />
+                    </StackPanel>
+                </Border>
             </Grid>
         </Border>
     </Grid>

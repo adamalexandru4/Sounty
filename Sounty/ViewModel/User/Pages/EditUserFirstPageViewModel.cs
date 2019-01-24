@@ -146,6 +146,7 @@ namespace Sounty.ViewModel
                 ChangePasswordViewModel.Reset();
                 EditUserViewModel.Reset();
                 MainWindowViewModel.Reset();
+                MenuViewModel.Reset();
             }
         }
         #endregion

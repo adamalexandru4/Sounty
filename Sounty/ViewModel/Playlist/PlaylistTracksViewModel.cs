@@ -58,8 +58,7 @@ namespace Sounty.ViewModel
             }
         }
     }
-
-
+    
     public class PlaylistViewModel : ViewModelBase
     {
         #region Fields
